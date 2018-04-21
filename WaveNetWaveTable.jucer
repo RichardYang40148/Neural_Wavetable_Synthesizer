@@ -3,9 +3,8 @@
 <JUCERPROJECT name="WaveNetWaveTable" projectType="audioplug" buildStandalone="1"
               jucerVersion="5.3.1" pluginFormats="buildVST,buildStandalone"
               pluginCharacteristicsValue="pluginProducesMidiOut,pluginWantsMidiIn"
-              headerPath="/Users/lamtharnhantrakul/code/GTCMT/WaveNetWaveTable/Maximilian"
-              buildVST="1" buildVST3="0" buildAU="0" buildAUv3="0" buildRTAS="0"
-              buildAAX="0" enableIAA="0">
+              headerPath="../../Maximilian" buildVST="1" buildVST3="0" buildAU="0"
+              buildAUv3="0" buildRTAS="0" buildAAX="0" enableIAA="0">
   <MAINGROUP id="Z0KCue" name="WaveNetWaveTable">
     <GROUP id="{9B5BBDAA-5C0C-DBB6-453E-F3DCAC161757}" name="Source">
       <GROUP id="{B617A8AE-9855-20CC-7CD3-76B285465876}" name="Maximilian">
@@ -62,12 +61,7 @@
         </GROUP>
         <GROUP id="{70558616-37CE-48D9-13EE-E6C93EBF8401}" name="maximilianTest.xcodeproj">
           <GROUP id="{DBE1A83C-B2E5-D75F-2E72-0ADF632C4823}" name="project.xcworkspace">
-            <GROUP id="{51D5ED49-2B52-4C0E-40C8-AA5AAC6BD752}" name="xcshareddata">
-              <FILE id="xTI7Mb" name="maximilianTest.xccheckout" compile="0" resource="1"
-                    file="Maximilian/maximilianTest.xcodeproj/project.xcworkspace/xcshareddata/maximilianTest.xccheckout"/>
-              <FILE id="gzg4ge" name="maximilianTest_10.8.xccheckout" compile="0"
-                    resource="1" file="Maximilian/maximilianTest.xcodeproj/project.xcworkspace/xcshareddata/maximilianTest_10.8.xccheckout"/>
-            </GROUP>
+            <GROUP id="{51D5ED49-2B52-4C0E-40C8-AA5AAC6BD752}" name="xcshareddata"/>
             <FILE id="qEwPwh" name="contents.xcworkspacedata" compile="0" resource="1"
                   file="Maximilian/maximilianTest.xcodeproj/project.xcworkspace/contents.xcworkspacedata"/>
           </GROUP>
@@ -149,22 +143,22 @@
     </XCODE_MAC>
   </EXPORTFORMATS>
   <MODULES>
-    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"
-            useGlobalPath="0"/>
-    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_video" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+            useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_video" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
   </MODULES>
   <JUCEOPTIONS/>
 </JUCERPROJECT>

@@ -8,7 +8,7 @@ namespace BinaryData
 {
 
 //================== maximilianTestWindowsVS2015.sln ==================
-static const unsigned char temp_binary_data_9[] =
+static const unsigned char temp_binary_data_7[] =
 "\xef\xbb\xbf\r\n"
 "Microsoft Visual Studio Solution File, Format Version 12.00\r\n"
 "# Visual Studio 14\r\n"
@@ -32,10 +32,10 @@ static const unsigned char temp_binary_data_9[] =
 "\tEndGlobalSection\r\n"
 "EndGlobal\r\n";
 
-const char* maximilianTestWindowsVS2015_sln = (const char*) temp_binary_data_9;
+const char* maximilianTestWindowsVS2015_sln = (const char*) temp_binary_data_7;
 
 //================== maximilianTestWindowsVS2015.suo ==================
-static const unsigned char temp_binary_data_10[] =
+static const unsigned char temp_binary_data_8[] =
 { 208,207,17,224,161,177,26,225,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,62,0,3,0,254,255,9,0,6,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,16,0,0,2,0,0,0,2,0,0,0,254,255,255,255,0,0,0,0,0,0,0,0,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
 255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
 255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
@@ -312,5 +312,5 @@ static const unsigned char temp_binary_data_10[] =
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,255,255,255,255,255,255,255,255,255,255,255,255,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
 
-const char* maximilianTestWindowsVS2015_suo = (const char*) temp_binary_data_10;
+const char* maximilianTestWindowsVS2015_suo = (const char*) temp_binary_data_8;
 }

@@ -8,12 +8,6 @@
 
 namespace BinaryData
 {
-    extern const char*   maximilianTest_xccheckout;
-    const int            maximilianTest_xccheckoutSize = 1501;
-
-    extern const char*   maximilianTest_10_8_xccheckout;
-    const int            maximilianTest_10_8_xccheckoutSize = 1511;
-
     extern const char*   contents_xcworkspacedata;
     const int            contents_xcworkspacedataSize = 159;
 
@@ -42,7 +36,7 @@ namespace BinaryData
     const int            maximilianTestWindowsVS2015_suoSize = 24576;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
-    const int namedResourceListSize = 11;
+    const int namedResourceListSize = 9;
 
     // Points to the start of a list of resource names.
     extern const char* namedResourceList[];
