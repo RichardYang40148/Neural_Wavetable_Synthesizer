@@ -14,6 +14,7 @@
 #include "PluginProcessor.h"
 #include "MeterComponent.h"
 #include "Oscillator.h"
+#include "WaveWindow.h"
 
 //==============================================================================
 /**
@@ -65,7 +66,8 @@ private:
     // For PPM meter
     MeterComponent Meter;
     
-    
+    // For WaveWindow
+    WaveWindow waveWindow;
     
     void timerCallback() override;
     

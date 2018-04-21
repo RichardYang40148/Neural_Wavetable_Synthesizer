@@ -112,6 +112,8 @@
       <FILE id="loN4bE" name="Oscillator.h" compile="0" resource="0" file="Source/Oscillator.h"/>
       <FILE id="n0Ysdt" name="Envelope.cpp" compile="1" resource="0" file="Source/Envelope.cpp"/>
       <FILE id="xazeMc" name="Envelope.h" compile="0" resource="0" file="Source/Envelope.h"/>
+      <FILE id="CMV6g6" name="WaveWindow.cpp" compile="1" resource="0" file="Source/WaveWindow.cpp"/>
+      <FILE id="ySash1" name="WaveWindow.h" compile="0" resource="0" file="Source/WaveWindow.h"/>
     </GROUP>
   </MAINGROUP>
   <LIVE_SETTINGS>

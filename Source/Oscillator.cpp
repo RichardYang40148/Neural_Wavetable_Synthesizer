@@ -14,9 +14,7 @@
 //==============================================================================
 Oscillator::Oscillator( WaveNetWaveTableAudioProcessor& p):
 processor(p)
-{
-    setSize(200,200);
-    
+{   
     oscMenu.addItem("Sine", 1);
     oscMenu.addItem("Saw", 2);
     oscMenu.addItem("Square", 3);

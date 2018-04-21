@@ -97,7 +97,7 @@ WaveNetWaveTableAudioProcessorEditor::WaveNetWaveTableAudioProcessorEditor (Wave
     
     ampTree = new AudioProcessorValueTreeState::SliderAttachment (processor.tree, "amp", ampSlider);  // the correct way to interface the slider in editor with processor.
     
-    addAndMakeVisible(ampLabel);
+    addAndMakeVisible(&ampLabel);
     releaseLabel.setText("Amp", dontSendNotification);
     releaseLabel.attachToComponent(&ampSlider, false);
     
@@ -111,7 +111,7 @@ WaveNetWaveTableAudioProcessorEditor::WaveNetWaveTableAudioProcessorEditor (Wave
     
     freqCutoffTree = new AudioProcessorValueTreeState::SliderAttachment (processor.tree, "cutoff", freqCutoffSlider);  // the correct way to interface the slider in editor with processor.
     
-    addAndMakeVisible(freqCutoffLabel);
+    addAndMakeVisible(&freqCutoffLabel);
     freqCutoffLabel.setText("Cutoff", dontSendNotification);
     freqCutoffLabel.attachToComponent(&freqCutoffSlider, false);
     
@@ -120,8 +120,11 @@ WaveNetWaveTableAudioProcessorEditor::WaveNetWaveTableAudioProcessorEditor (Wave
     getLookAndFeel().setColour(Slider::trackColourId, Colours::lightskyblue);
     
     // Ppm Meter
-    addAndMakeVisible(Meter);
+    addAndMakeVisible(&Meter);
     startTimer(10);  // start the timer to tick every 10ms
+    
+    // Add the wave window
+    addAndMakeVisible(&waveWindow);
 }
 
 WaveNetWaveTableAudioProcessorEditor::~WaveNetWaveTableAudioProcessorEditor()
@@ -165,7 +168,13 @@ void WaveNetWaveTableAudioProcessorEditor::resized()
     
     // >>> Add the combo box
     auto comboBoxWidth = 200;
-    oscGUI.setBounds(area.removeFromLeft(comboBoxWidth));
+    auto comboBoxHeight = 100;
+    //area.removeFromLeft(comboBoxWidth);
+    oscGUI.setBounds(area.removeFromTop(comboBoxHeight));
+    
+    // >>> Add wave window
+    auto windowHeight = area.getHeight();
+    waveWindow.setBounds(area.removeFromTop(windowHeight));
     
 }
 

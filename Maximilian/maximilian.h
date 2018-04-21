@@ -65,6 +65,8 @@ using namespace std;
 #endif
 #define TWOPI 6.283185307179586476925286766559
 
+
+
 class maxiSettings {
 public:
 	static int sampleRate;
@@ -77,6 +79,9 @@ public:
 	}
 };
 
+//-----------------------------
+extern double wavenetBuffer[514];
+//-----------------------------
 
 class maxiOsc {
 	
@@ -107,6 +112,7 @@ public:
     
     //-----------------------------------
     double wavenetbuf4(double frequency);
+    //-----------------------------------
 	
 };
 
