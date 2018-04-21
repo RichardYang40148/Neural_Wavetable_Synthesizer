@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT name="WaveNetWaveTable" projectType="audioplug" buildStandalone="1"
+              jucerVersion="5.3.1" pluginFormats="buildVST,buildStandalone"
+              pluginCharacteristicsValue="pluginProducesMidiOut,pluginWantsMidiIn"
+              headerPath="/Users/lamtharnhantrakul/code/GTCMT/WaveNetWaveTable/Maximilian"
+              buildVST="1" buildVST3="0" buildAU="0" buildAUv3="0" buildRTAS="0"
+              buildAAX="0" enableIAA="0">
+  <MAINGROUP id="Z0KCue" name="WaveNetWaveTable">
+    <GROUP id="{9B5BBDAA-5C0C-DBB6-453E-F3DCAC161757}" name="Source">
+      <GROUP id="{B617A8AE-9855-20CC-7CD3-76B285465876}" name="Maximilian">
+        <GROUP id="{FC4B6999-7B60-754B-24F5-57D2AF53BA35}" name="libs">
+          <FILE id="nDpwc1" name="fft.cpp" compile="1" resource="0" file="Maximilian/libs/fft.cpp"/>
+          <FILE id="OtCut4" name="fft.h" compile="0" resource="0" file="Maximilian/libs/fft.h"/>
+          <FILE id="Qy1o1Y" name="maxiAtoms.cpp" compile="1" resource="0" file="Maximilian/libs/maxiAtoms.cpp"/>
+          <FILE id="Wlwj6j" name="maxiAtoms.h" compile="0" resource="0" file="Maximilian/libs/maxiAtoms.h"/>
+          <FILE id="qTRYQC" name="maxiBark.cpp" compile="1" resource="0" file="Maximilian/libs/maxiBark.cpp"/>
+          <FILE id="EPESPP" name="maxiBark.h" compile="0" resource="0" file="Maximilian/libs/maxiBark.h"/>
+          <FILE id="BaptPE" name="maxiFFT.cpp" compile="1" resource="0" file="Maximilian/libs/maxiFFT.cpp"/>
+          <FILE id="joPTOb" name="maxiFFT.h" compile="0" resource="0" file="Maximilian/libs/maxiFFT.h"/>
+          <FILE id="WVz9JZ" name="maxiGrains.cpp" compile="1" resource="0" file="Maximilian/libs/maxiGrains.cpp"/>
+          <FILE id="cIbcck" name="maxiGrains.h" compile="0" resource="0" file="Maximilian/libs/maxiGrains.h"/>
+          <FILE id="JJ75BE" name="maxim.h" compile="0" resource="0" file="Maximilian/libs/maxim.h"/>
+          <FILE id="A3hhlc" name="maxiMFCC.cpp" compile="1" resource="0" file="Maximilian/libs/maxiMFCC.cpp"/>
+          <FILE id="MdJEvS" name="maxiMFCC.h" compile="0" resource="0" file="Maximilian/libs/maxiMFCC.h"/>
+          <FILE id="owy2oN" name="sineTable.h" compile="0" resource="0" file="Maximilian/libs/sineTable.h"/>
+        </GROUP>
+        <GROUP id="{32DABA89-325A-68BD-A283-7D306D5D7E3E}" name="maximilian_examples">
+          <FILE id="yiM78l" name="1.TestTone.cpp" compile="1" resource="0" file="Maximilian/maximilian_examples/1.TestTone.cpp"/>
+          <FILE id="Nv5RRw" name="2.TwoTones.cpp" compile="1" resource="0" file="Maximilian/maximilian_examples/2.TwoTones.cpp"/>
+          <FILE id="R03xIf" name="3.AM1.cpp" compile="1" resource="0" file="Maximilian/maximilian_examples/3.AM1.cpp"/>
+          <FILE id="HeiY3s" name="4.AM2.cpp" compile="1" resource="0" file="Maximilian/maximilian_examples/4.AM2.cpp"/>
+          <FILE id="sSOQQc" name="5.FM1.cpp" compile="1" resource="0" file="Maximilian/maximilian_examples/5.FM1.cpp"/>
+          <FILE id="F323TC" name="6.FM2.cpp" compile="1" resource="0" file="Maximilian/maximilian_examples/6.FM2.cpp"/>
+          <FILE id="J4maxg" name="7.Counting1.cpp" compile="1" resource="0" file="Maximilian/maximilian_examples/7.Counting1.cpp"/>
+          <FILE id="inbSEO" name="8.Counting2.cpp" compile="1" resource="0" file="Maximilian/maximilian_examples/8.Counting2.cpp"/>
+          <FILE id="uzSIrw" name="8.Counting3.cpp" compile="1" resource="0" file="Maximilian/maximilian_examples/8.Counting3.cpp"/>
+          <FILE id="yBu2K9" name="8.Counting4.cpp" compile="1" resource="0" file="Maximilian/maximilian_examples/8.Counting4.cpp"/>
+          <FILE id="bnrtRc" name="9.Envelopes.cpp" compile="1" resource="0" file="Maximilian/maximilian_examples/9.Envelopes.cpp"/>
+          <FILE id="UMLfex" name="10.Filters.cpp" compile="1" resource="0" file="Maximilian/maximilian_examples/10.Filters.cpp"/>
+          <FILE id="Q2w162" name="11.Mixing.cpp" compile="1" resource="0" file="Maximilian/maximilian_examples/11.Mixing.cpp"/>
+          <FILE id="fG33nQ" name="12.SamplePlayer.cpp" compile="1" resource="0"
+                file="Maximilian/maximilian_examples/12.SamplePlayer.cpp"/>
+          <FILE id="skNavi" name="13.Advanced-Filters.cpp" compile="1" resource="0"
+                file="Maximilian/maximilian_examples/13.Advanced-Filters.cpp"/>
+          <FILE id="Z9KrlN" name="14.monosynth.cpp" compile="1" resource="0"
+                file="Maximilian/maximilian_examples/14.monosynth.cpp"/>
+          <FILE id="gWonW7" name="15.polysynth.cpp" compile="1" resource="0"
+                file="Maximilian/maximilian_examples/15.polysynth.cpp"/>
+          <FILE id="hDLkgI" name="16.Replicant.cpp" compile="1" resource="0"
+                file="Maximilian/maximilian_examples/16.Replicant.cpp"/>
+          <FILE id="aP5Hfq" name="17.Compressor.cpp" compile="1" resource="0"
+                file="Maximilian/maximilian_examples/17.Compressor.cpp"/>
+          <FILE id="sRUjD4" name="18.DrumMachine.cpp" compile="1" resource="0"
+                file="Maximilian/maximilian_examples/18.DrumMachine.cpp"/>
+          <FILE id="JFepeb" name="19.Enveloping2.cpp" compile="1" resource="0"
+                file="Maximilian/maximilian_examples/19.Enveloping2.cpp"/>
+          <FILE id="SySOo9" name="20.FFT_example.cpp" compile="1" resource="0"
+                file="Maximilian/maximilian_examples/20.FFT_example.cpp"/>
+          <FILE id="TG5Lsy" name="21.Recording.cpp" compile="1" resource="0"
+                file="Maximilian/maximilian_examples/21.Recording.cpp"/>
+        </GROUP>
+        <GROUP id="{70558616-37CE-48D9-13EE-E6C93EBF8401}" name="maximilianTest.xcodeproj">
+          <GROUP id="{DBE1A83C-B2E5-D75F-2E72-0ADF632C4823}" name="project.xcworkspace">
+            <GROUP id="{51D5ED49-2B52-4C0E-40C8-AA5AAC6BD752}" name="xcshareddata">
+              <FILE id="xTI7Mb" name="maximilianTest.xccheckout" compile="0" resource="1"
+                    file="Maximilian/maximilianTest.xcodeproj/project.xcworkspace/xcshareddata/maximilianTest.xccheckout"/>
+              <FILE id="gzg4ge" name="maximilianTest_10.8.xccheckout" compile="0"
+                    resource="1" file="Maximilian/maximilianTest.xcodeproj/project.xcworkspace/xcshareddata/maximilianTest_10.8.xccheckout"/>
+            </GROUP>
+            <FILE id="qEwPwh" name="contents.xcworkspacedata" compile="0" resource="1"
+                  file="Maximilian/maximilianTest.xcodeproj/project.xcworkspace/contents.xcworkspacedata"/>
+          </GROUP>
+          <FILE id="d8GZdm" name="project.pbxproj" compile="0" resource="1" file="Maximilian/maximilianTest.xcodeproj/project.pbxproj"/>
+        </GROUP>
+        <GROUP id="{F3B22E72-C4B3-FA7F-7454-8F4FDE3921A9}" name="maximilianTestWindowsVS2015">
+          <GROUP id="{9DC47B6A-77D2-9A61-01B8-231322E615B2}" name="maximilianTestWindowsVS2015">
+            <FILE id="RIUc7J" name="maximilianTestWindowsVS2015.vcxproj" compile="0"
+                  resource="1" file="Maximilian/maximilianTestWindowsVS2015/maximilianTestWindowsVS2015/maximilianTestWindowsVS2015.vcxproj"/>
+            <FILE id="y9i6vB" name="maximilianTestWindowsVS2015.vcxproj.filters"
+                  compile="0" resource="1" file="Maximilian/maximilianTestWindowsVS2015/maximilianTestWindowsVS2015/maximilianTestWindowsVS2015.vcxproj.filters"/>
+            <FILE id="TmncFj" name="maximilianTestWindowsVS2015.vcxproj.user" compile="0"
+                  resource="1" file="Maximilian/maximilianTestWindowsVS2015/maximilianTestWindowsVS2015/maximilianTestWindowsVS2015.vcxproj.user"/>
+            <FILE id="k57jmb" name="ReadMe.txt" compile="0" resource="1" file="Maximilian/maximilianTestWindowsVS2015/maximilianTestWindowsVS2015/ReadMe.txt"/>
+            <FILE id="CAKpvS" name="stdafx.h" compile="0" resource="0" file="Maximilian/maximilianTestWindowsVS2015/maximilianTestWindowsVS2015/stdafx.h"/>
+            <FILE id="aHlMAL" name="targetver.h" compile="0" resource="0" file="Maximilian/maximilianTestWindowsVS2015/maximilianTestWindowsVS2015/targetver.h"/>
+          </GROUP>
+          <FILE id="DnbAdT" name="maximilianTestWindowsVS2015.sdf" compile="0"
+                resource="1" file="Maximilian/maximilianTestWindowsVS2015/maximilianTestWindowsVS2015.sdf"/>
+          <FILE id="QzHbKE" name="maximilianTestWindowsVS2015.sln" compile="0"
+                resource="1" file="Maximilian/maximilianTestWindowsVS2015/maximilianTestWindowsVS2015.sln"/>
+          <FILE id="C8yFTC" name="maximilianTestWindowsVS2015.suo" compile="0"
+                resource="1" file="Maximilian/maximilianTestWindowsVS2015/maximilianTestWindowsVS2015.suo"/>
+        </GROUP>
+        <FILE id="kKVGyu" name="main.cpp" compile="1" resource="0" file="Maximilian/main.cpp"/>
+        <FILE id="XYXaL3" name="maximilian.cpp" compile="1" resource="0" file="Maximilian/maximilian.cpp"/>
+        <FILE id="ymItQp" name="maximilian.h" compile="0" resource="0" file="Maximilian/maximilian.h"/>
+        <FILE id="YjVyHt" name="stb_vorbis.c" compile="1" resource="0" file="Maximilian/stb_vorbis.c"/>
+        <FILE id="f5LrDY" name="stb_vorbis.h" compile="0" resource="0" file="Maximilian/stb_vorbis.h"/>
+      </GROUP>
+      <FILE id="OAeZNT" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="f95GhB" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+      <FILE id="q3yQUE" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+      <FILE id="gTssqo" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      <FILE id="RKVvY5" name="SynthVoice.h" compile="0" resource="0" file="Source/SynthVoice.h"/>
+      <FILE id="jvbWiq" name="SynthSound.h" compile="0" resource="0" file="Source/SynthSound.h"/>
+      <FILE id="qkGddF" name="ErrorDef.h" compile="0" resource="0" file="Source/ErrorDef.h"/>
+      <FILE id="QAleyW" name="MeterComponent.cpp" compile="1" resource="0"
+            file="Source/MeterComponent.cpp"/>
+      <FILE id="KHQOL6" name="MeterComponent.h" compile="0" resource="0"
+            file="Source/MeterComponent.h"/>
+      <FILE id="mFQKap" name="Ppm.cpp" compile="1" resource="0" file="Source/Ppm.cpp"/>
+      <FILE id="B8lnzs" name="Ppm.h" compile="0" resource="0" file="Source/Ppm.h"/>
+      <FILE id="a7zZ0h" name="Oscillator.cpp" compile="1" resource="0" file="Source/Oscillator.cpp"/>
+      <FILE id="loN4bE" name="Oscillator.h" compile="0" resource="0" file="Source/Oscillator.h"/>
+      <FILE id="n0Ysdt" name="Envelope.cpp" compile="1" resource="0" file="Source/Envelope.cpp"/>
+      <FILE id="xazeMc" name="Envelope.h" compile="0" resource="0" file="Source/Envelope.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <LIVE_SETTINGS>
+    <OSX/>
+  </LIVE_SETTINGS>
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="Builds/MacOSX">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" headerPath="/Users/lamtharnhantrakul/code/GTCMT/WaveNetWaveTable/Maximilian-master/Users/lamtharnhantrakul/code/GTCMT/WaveNetWaveTable/Maximilian"/>
+        <CONFIGURATION isDebug="0" name="Release"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../others/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../others/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../others/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../others/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../others/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../others/JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../others/JUCE/modules"/>
+        <MODULEPATH id="juce_video" path="../../others/JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../others/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../others/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../others/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../others/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../others/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../others/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../others/JUCE/modules"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"
+            useGlobalPath="0"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_video" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+  </MODULES>
+  <JUCEOPTIONS/>
+</JUCERPROJECT>
