@@ -27,18 +27,18 @@ tree (*this, nullptr)
 #endif
 {
     // >>> For Updating slider changes... a DAW requires everything to be normalized from 0.0 - 1.0
-    NormalisableRange<float> attackParam(0.1f, 5000.0f);
-    NormalisableRange<float> decayParam(0.1f, 5000.0f);
-    NormalisableRange<float> sustainParam(0.1f, 5000.0f);
-    NormalisableRange<float> releaseParam(0.1f, 5000.0f);
+    NormalisableRange<float> attackParam(1.0f, 5000.0f);
+    NormalisableRange<float> decayParam(1.0f, 5000.0f);
+    NormalisableRange<float> sustainParam(1.0f, 5000.0f);
+    NormalisableRange<float> releaseParam(1.0f, 5000.0f);
     NormalisableRange<float> ampParam(0.0f, 1.0f);
     NormalisableRange<float> freqCutoffParam(0.0f, 1.0f);  // I am using a Maximillian lopass object which takes 0.0 - 1.0 as cutoff
     
     // The tree object is used to communicate values between the `PluginEditor` and the `PluginProcessor`
-    tree.createAndAddParameter(("attack"), "Attack", "Attack", attackParam, 0.1f, nullptr, nullptr);
-    tree.createAndAddParameter(("decay"), "Decay", "Decay", decayParam, 0.1f, nullptr, nullptr);
+    tree.createAndAddParameter(("attack"), "Attack", "Attack", attackParam, 1.0f, nullptr, nullptr);
+    tree.createAndAddParameter(("decay"), "Decay", "Decay", decayParam, 1.0f, nullptr, nullptr);
     tree.createAndAddParameter(("sustain"), "Sustain", "Sustain", sustainParam, 5000.0f, nullptr, nullptr);
-    tree.createAndAddParameter(("release"), "Release", "Release", releaseParam, 0.0f, nullptr, nullptr);
+    tree.createAndAddParameter(("release"), "Release", "Release", releaseParam, 1.0f, nullptr, nullptr);
     tree.createAndAddParameter(("amp"), "Amp", "Amp", ampParam, 0.8f, nullptr, nullptr);
     tree.createAndAddParameter(("cutoff"), "Cutoff", "Cutoff", freqCutoffParam, 0.5f, nullptr, nullptr);
     

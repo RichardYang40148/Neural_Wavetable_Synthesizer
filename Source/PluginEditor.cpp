@@ -24,8 +24,7 @@ WaveNetWaveTableAudioProcessorEditor::WaveNetWaveTableAudioProcessorEditor (Wave
     
     // AttackSlider
     attackSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
-    attackSlider.setRange(0.1f,5000.0f); // 0.1ms - 5000ms attack time
-    attackSlider.setValue(0.1f);
+    attackSlider.setRange(1.0f,5000.0f); // 0.1ms - 5000ms attack time
     attackSlider.setTextValueSuffix(" ms");
     attackSlider.getNumDecimalPlacesToDisplay();
     attackSlider.setTextBoxStyle(Slider::TextBoxBelow, true, 40.0, 20.0);
@@ -40,8 +39,7 @@ WaveNetWaveTableAudioProcessorEditor::WaveNetWaveTableAudioProcessorEditor (Wave
     
     // DecaySlider
     decaySlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
-    decaySlider.setRange(0.1f,5000.0f); // 0.1ms - 5000ms attack time
-    decaySlider.setValue(0.1f);
+    decaySlider.setRange(1.0f,5000.0f); // 0.1ms - 5000ms attack time
     decaySlider.setTextValueSuffix(" ms");
     decaySlider.getNumDecimalPlacesToDisplay();
     decaySlider.setTextBoxStyle(Slider::TextBoxBelow, true, 40.0, 20.0);
@@ -56,8 +54,7 @@ WaveNetWaveTableAudioProcessorEditor::WaveNetWaveTableAudioProcessorEditor (Wave
     
     // SustainSlider
     sustainSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
-    sustainSlider.setRange(0.1f,5000.0f); // 0.1ms - 5000ms attack time
-    sustainSlider.setValue(0.1f);
+    sustainSlider.setRange(1.0f,5000.0f); // 0.1ms - 5000ms attack time
     sustainSlider.setTextValueSuffix(" ms");
     sustainSlider.getNumDecimalPlacesToDisplay();
     sustainSlider.setTextBoxStyle(Slider::TextBoxBelow, true, 40.0, 20.0);
@@ -72,8 +69,7 @@ WaveNetWaveTableAudioProcessorEditor::WaveNetWaveTableAudioProcessorEditor (Wave
     
     // ReleaseSlider
     releaseSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
-    releaseSlider.setRange(0.1f,5000.0f); // 0.1ms - 5000ms release time
-    releaseSlider.setValue(0.1f);
+    releaseSlider.setRange(1.0f,5000.0f); // 0.1ms - 5000ms release time
     releaseSlider.setTextValueSuffix(" ms");
     releaseSlider.getNumDecimalPlacesToDisplay();
     releaseSlider.setTextBoxStyle(Slider::TextBoxBelow, true, 40.0, 20.0);
