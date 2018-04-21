@@ -41,6 +41,7 @@ void WaveWindow::paint (Graphics& g)
 //    g.setFont (14.0f);
 //    g.drawText ("WaveWindow", getLocalBounds(),
 //                Justification::centred, true);   // draw some placeholder text
+    
     int waveTableLength = 514;
     for (int i = 0; i < waveTableLength; i++) {
         float x_pos = ((float)i / (float)waveTableLength) * getLocalBounds().getWidth();

@@ -167,14 +167,13 @@ void WaveNetWaveTableAudioProcessorEditor::resized()
     Meter.setBounds(area.removeFromLeft(peakMeterWidth));
     
     // >>> Add the combo box
-    auto comboBoxWidth = 200;
     auto comboBoxHeight = 100;
     //area.removeFromLeft(comboBoxWidth);
     oscGUI.setBounds(area.removeFromTop(comboBoxHeight));
     
     // >>> Add wave window
     auto windowHeight = area.getHeight();
-    waveWindow.setBounds(area.removeFromTop(windowHeight));
+    waveWindow.setBounds(area.removeFromTop(windowHeight).reduced(20,20)); //`reduced()` puts a border around the window
     
 }
 
