@@ -43,7 +43,7 @@ tree (*this, nullptr)
     tree.createAndAddParameter(("cutoff"), "Cutoff", "Cutoff", freqCutoffParam, 0.5f, nullptr, nullptr);
     
     // For the drop down combobox
-    NormalisableRange<float> wavetypeParam(0,2); // Index in the box is 1-3, but value passing in tree is from 0-2
+    NormalisableRange<float> wavetypeParam(0,3); // Index in the box is 1-3, but value passing in tree is from 0-2
     tree.createAndAddParameter("wavetype", "WaveType", "Wavetype", wavetypeParam, 1, nullptr, nullptr);
     
     

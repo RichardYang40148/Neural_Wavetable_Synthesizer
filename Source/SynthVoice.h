@@ -50,6 +50,9 @@ public:
         if (theWave == 2) {
             return osc1.square(frequency);
         }
+        if (theWave == 3) {
+            return osc1.wavenetbuf4(frequency);
+        }
         else {
             return osc1.saw(frequency);
         }

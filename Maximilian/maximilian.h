@@ -104,6 +104,9 @@ public:
     double sawn(double frequency);
     double rect(double frequency, double duty=0.5);
 	void phaseReset(double phaseIn);
+    
+    //-----------------------------------
+    double wavenetbuf4(double frequency);
 	
 };
 
