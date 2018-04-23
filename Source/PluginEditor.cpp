@@ -125,8 +125,13 @@ WaveNetWaveTableAudioProcessorEditor::WaveNetWaveTableAudioProcessorEditor (Wave
 
 WaveNetWaveTableAudioProcessorEditor::~WaveNetWaveTableAudioProcessorEditor()
 {
-//    delete attackTree;
-//    delete releaseTree;
+
+    attackTree = nullptr;
+    decayTree= nullptr;
+    sustainTree= nullptr;
+    releaseTree= nullptr;
+    ampTree= nullptr;
+    freqCutoffTree= nullptr;
 }
 
 //==============================================================================
