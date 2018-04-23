@@ -32,7 +32,7 @@ void WaveWindow::paint (Graphics& g)
        drawing code..
     */
 
-    g.fillAll (Colours::floralwhite);   // clear the background
+    g.fillAll (Colours::darkgrey);   // clear the background
 
 //    g.setColour (Colours::grey);
 //    g.drawRect (getLocalBounds(), 1);   // draw an outline around the component
@@ -46,8 +46,8 @@ void WaveWindow::paint (Graphics& g)
     for (int i = 0; i < waveTableLength; i++) {
         float x_pos = ((float)i / (float)waveTableLength) * getLocalBounds().getWidth();
         float y_pos = getLocalBounds().getHeight() * ((wavenetBuffer[i] + 1)/2);
-        g.setColour(Colours::darkgrey);
-        g.drawEllipse(x_pos, y_pos, 1.0f, 1.0f, 3.0f);
+        g.setColour(Colours::lightskyblue);
+        g.drawEllipse(x_pos, y_pos, 1.0f, 1.0f, 1.0f);
     }
 }
 

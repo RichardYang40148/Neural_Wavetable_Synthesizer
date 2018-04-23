@@ -113,8 +113,7 @@ WaveNetWaveTableAudioProcessorEditor::WaveNetWaveTableAudioProcessorEditor (Wave
     
     // Change look and feel of all sliders
     getLookAndFeel().setColour(Slider::thumbColourId, Colours::deeppink);
-    getLookAndFeel().setColour(Slider::trackColourId, Colours::lightskyblue);
-    
+    getLookAndFeel().setColour(Slider::trackColourId, Colours::lightskyblue);    
     // Ppm Meter
     addAndMakeVisible(&Meter);
     startTimer(10);  // start the timer to tick every 10ms
