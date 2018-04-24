@@ -66,11 +66,13 @@ public:
     float releaseTime;
     float ampValue;
     float freqCutoff;
+    int interpolation;
+    
     AudioProcessorValueTreeState tree;
     
     //==============================================================================
     float getVppm();
-
+    bool buttonState = false;
 private:
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (WaveNetWaveTableAudioProcessor)

@@ -34,6 +34,8 @@ tree (*this, nullptr)
     NormalisableRange<float> ampParam(0.0f, 1.0f);
     NormalisableRange<float> freqCutoffParam(0.0f, 1.0f);  // I am using a Maximillian lopass object which takes 0.0 - 1.0 as cutoff
     
+    NormalisableRange<float> interpolationParam(0, 100);
+    
     // The tree object is used to communicate values between the `PluginEditor` and the `PluginProcessor`
     tree.createAndAddParameter(("attack"), "Attack", "Attack", attackParam, 1.0f, nullptr, nullptr);
     tree.createAndAddParameter(("decay"), "Decay", "Decay", decayParam, 1.0f, nullptr, nullptr);
@@ -42,9 +44,13 @@ tree (*this, nullptr)
     tree.createAndAddParameter(("amp"), "Amp", "Amp", ampParam, 0.8f, nullptr, nullptr);
     tree.createAndAddParameter(("cutoff"), "Cutoff", "Cutoff", freqCutoffParam, 0.5f, nullptr, nullptr);
     
+    tree.createAndAddParameter(("interpolation"), "Interpolation", "Interpolation", interpolationParam, 1.0f, nullptr, nullptr);
+    
     // For the drop down combobox
     NormalisableRange<float> wavetypeParam(0,3); // Index in the box is 1-3, but value passing in tree is from 0-2
+    NormalisableRange<float> wavetype2Param(0,3); // Index in the box is 1-3, but value passing in tree is from 0-2
     tree.createAndAddParameter("wavetype", "WaveType", "Wavetype", wavetypeParam, 1, nullptr, nullptr);
+    tree.createAndAddParameter("wavetype2", "WaveType2", "Wavetype2", wavetype2Param, 1, nullptr, nullptr);
     
     
     
@@ -180,8 +186,20 @@ void WaveNetWaveTableAudioProcessor::processBlock (AudioBuffer<float>& buffer, M
     for (int v = 0; v < mySynth.getNumVoices(); v++) {
         if ((myVoice = dynamic_cast<SynthVoice*>(mySynth.getVoice(v))))
         {
-            // Wave selection
-            myVoice->getOscType(tree.getRawParameterValue("wavetype"));
+            
+            if (!buttonState) {
+                //std::cout<<0<<std::endl;
+                // Wave selection
+                myVoice->getOscType(tree.getRawParameterValue("wavetype"));
+            }
+            else{
+                //std::cout<<1<<std::endl;
+                
+                myVoice->getInterpolationFile(tree.getRawParameterValue("interpolation"));
+                myVoice->getNeuralOscType(tree.getRawParameterValue("wavetype"),tree.getRawParameterValue("wavetype2") );    
+            }
+            
+            
             
             // Controls the Amp and ADSR
             myVoice->getParam(tree.getRawParameterValue("amp"),

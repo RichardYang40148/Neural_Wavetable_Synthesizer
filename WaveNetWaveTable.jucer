@@ -110,6 +110,8 @@
       <FILE id="B8lnzs" name="Ppm.h" compile="0" resource="0" file="Source/Ppm.h"/>
       <FILE id="a7zZ0h" name="Oscillator.cpp" compile="1" resource="0" file="Source/Oscillator.cpp"/>
       <FILE id="loN4bE" name="Oscillator.h" compile="0" resource="0" file="Source/Oscillator.h"/>
+      <FILE id="FsINbo" name="Oscillator2.cpp" compile="1" resource="0" file="Source/Oscillator2.cpp"/>
+      <FILE id="CbXnmI" name="Oscillator2.h" compile="0" resource="0" file="Source/Oscillator2.h"/>
       <FILE id="n0Ysdt" name="Envelope.cpp" compile="1" resource="0" file="Source/Envelope.cpp"/>
       <FILE id="xazeMc" name="Envelope.h" compile="0" resource="0" file="Source/Envelope.h"/>
       <FILE id="CMV6g6" name="WaveWindow.cpp" compile="1" resource="0" file="Source/WaveWindow.cpp"/>

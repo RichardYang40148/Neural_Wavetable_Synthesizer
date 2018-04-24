@@ -31,30 +31,40 @@ public:
         env1.setSustain(double(*sustain));
         env1.setRelease(double(*release));
     }
+    void getInterpolationFile(float* interpolation)
+    {
+        osc1.interpolationRead(float(*interpolation), int(theWave));
+    }
     
     //===========================================
     // For controlling the OSC type
     void getOscType(float* selection)
     {
         theWave = *selection; //dereferenec the selection
+        theMode = 0;
+    }
+    
+    void getNeuralOscType(float* selection, float* selection2)
+    {
+        theWave = *selection + *selection2; //dereferenec the selection
+        theMode = 1;
     }
     
     double setOscType ()
     {
-        if (theWave == 0) {
-            return osc1.sinewave(frequency);
+        if (theMode == 0) {
+            if (theWave == 0) {
+                return osc1.sinewave(frequency);
+            }
+            else if (theWave == 1) {
+                return osc1.saw(frequency);
+            }
+            else{
+                return osc1.triangle(frequency);
+            }
         }
-        if (theWave == 1) {
-            return osc1.saw(frequency);
-        }
-        if (theWave == 2) {
-            return osc1.square(frequency);
-        }
-        if (theWave == 3) {
+        else{
             return osc1.wavenetbuf4(frequency);
-        }
-        else {
-            return osc1.saw(frequency);
         }
     }
     
@@ -122,6 +132,7 @@ private:
     double frequency;
     double masterAmp;
     int theWave;  // wave type selection index
+    int theMode;  // wave mode selection index
     float theCutoff;  // LPF cutoff
     
     maxiOsc osc1;

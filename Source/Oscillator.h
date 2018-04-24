@@ -26,7 +26,7 @@ public:
     void resized() override;
     
     void comboBoxChanged(ComboBox* box) override;
-
+    bool comboBoxChangeState = false;
 private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.

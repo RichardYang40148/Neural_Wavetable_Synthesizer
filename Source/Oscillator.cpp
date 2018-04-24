@@ -17,12 +17,11 @@ processor(p)
 {   
     oscMenu.addItem("Sine", 1);
     oscMenu.addItem("Saw", 2);
-    oscMenu.addItem("Square", 3);
+    oscMenu.addItem("Triangle", 3);
     oscMenu.addItem("WaveNet", 4);
     oscMenu.setJustificationType(Justification::centred);
     addAndMakeVisible(&oscMenu);
     oscMenu.addListener(this);
-    
     waveSelection = new AudioProcessorValueTreeState::ComboBoxAttachment(processor.tree, "wavetype", oscMenu);
 }
 
@@ -37,10 +36,11 @@ void Oscillator::paint (Graphics& g)
 
 void Oscillator::resized()
 {
-    Rectangle<int> area = getLocalBounds().reduced(40);
+    Rectangle<int> area = getLocalBounds().reduced(20,0);
     oscMenu.setBounds(area.removeFromTop(20));
 }
 
 void Oscillator::comboBoxChanged(ComboBox* box)
 {
+    comboBoxChangeState = true;
 }

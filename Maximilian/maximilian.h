@@ -81,6 +81,7 @@ public:
 
 //-----------------------------
 extern double wavenetBuffer[514];
+extern double wavenetBuffer_test[514];
 //-----------------------------
 
 class maxiOsc {
@@ -95,7 +96,8 @@ class maxiOsc {
 	
 public:
 	maxiOsc();
-	double sinewave(double frequency);
+
+    double sinewave(double frequency);
 	double coswave(double frequency);
 	double phasor(double frequency);
 	double phasor(double frequency, double startphase, double endphase);
@@ -111,6 +113,8 @@ public:
 	void phaseReset(double phaseIn);
     
     //-----------------------------------
+    int prevInterpolation = 101;
+    void interpolationRead(float interpolation, int mode);
     double wavenetbuf4(double frequency);
     //-----------------------------------
 	

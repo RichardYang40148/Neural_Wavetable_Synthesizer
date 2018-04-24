@@ -14,12 +14,13 @@
 #include "PluginProcessor.h"
 #include "MeterComponent.h"
 #include "Oscillator.h"
+#include "Oscillator2.h"
 #include "WaveWindow.h"
 
 //==============================================================================
 /**
 */
-class WaveNetWaveTableAudioProcessorEditor  : public AudioProcessorEditor, public Slider::Listener,  public Timer
+class WaveNetWaveTableAudioProcessorEditor  : public AudioProcessorEditor, public Slider::Listener,  public Timer, public TextButton::Listener
 {
 public:
     WaveNetWaveTableAudioProcessorEditor (WaveNetWaveTableAudioProcessor&);
@@ -32,7 +33,7 @@ public:
     //==============================================================================
     
     void sliderValueChanged (Slider* slider) override;
-
+    void buttonClicked (Button *button) override;
 private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
@@ -40,6 +41,7 @@ private:
     
     // For the dropdown box
     Oscillator oscGUI;
+    Oscillator2 oscGUI2;
     
     // Create Tree objects: this is JUCE's way of communicating values between `PluginEditor` and `PluginProcessor`
     ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> attackTree;
@@ -48,6 +50,7 @@ private:
     ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> releaseTree;
     ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> ampTree;
     ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> freqCutoffTree;
+    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> interpolationTree;
     
     Slider attackSlider;
     Slider decaySlider;
@@ -55,6 +58,7 @@ private:
     Slider releaseSlider;
     Slider ampSlider;
     Slider freqCutoffSlider;
+    Slider interpolationSlider;
     
     Label attackLabel;
     Label decayLabel;
@@ -62,7 +66,10 @@ private:
     Label releaseLabel;
     Label ampLabel;
     Label freqCutoffLabel;
+    Label interpolationLabel;
     
+    // Button for mode switch (Normal v.s. Neural Wavetable)
+    TextButton typeButton;
     // For PPM meter
     MeterComponent Meter;
     

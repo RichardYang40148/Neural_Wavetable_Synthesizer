@@ -10,24 +10,30 @@
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
-
 //==============================================================================
 WaveNetWaveTableAudioProcessorEditor::WaveNetWaveTableAudioProcessorEditor (WaveNetWaveTableAudioProcessor& p)
-    : AudioProcessorEditor (&p), processor (p), oscGUI(p) // give the processor instance to oscGUI
+    : AudioProcessorEditor (&p), processor (p), oscGUI(p), oscGUI2(p) // give the processor instance to oscGUI
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
-    setSize (600, 300);
+    setSize (680, 300);
+    
+    //Type button
+    typeButton.setButtonText("Wavetable");
+    typeButton.setClickingTogglesState(true);
+    addAndMakeVisible(typeButton);
+    typeButton.addListener(this);
     
     //Drop down box
     addAndMakeVisible(&oscGUI);
+    addAndMakeVisible(&oscGUI2);
     
     // AttackSlider
     attackSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
     attackSlider.setRange(1.0f,5000.0f); // 0.1ms - 5000ms attack time
     attackSlider.setTextValueSuffix(" ms");
     attackSlider.getNumDecimalPlacesToDisplay();
-    attackSlider.setTextBoxStyle(Slider::TextBoxBelow, true, 40.0, 20.0);
+    attackSlider.setTextBoxStyle(Slider::TextBoxBelow, true, 50.0, 20.0);
     attackSlider.addListener(this);
     addAndMakeVisible(&attackSlider);
     
@@ -42,7 +48,7 @@ WaveNetWaveTableAudioProcessorEditor::WaveNetWaveTableAudioProcessorEditor (Wave
     decaySlider.setRange(1.0f,5000.0f); // 0.1ms - 5000ms attack time
     decaySlider.setTextValueSuffix(" ms");
     decaySlider.getNumDecimalPlacesToDisplay();
-    decaySlider.setTextBoxStyle(Slider::TextBoxBelow, true, 40.0, 20.0);
+    decaySlider.setTextBoxStyle(Slider::TextBoxBelow, true, 50.0, 20.0);
     decaySlider.addListener(this);
     addAndMakeVisible(&decaySlider);
     
@@ -57,13 +63,13 @@ WaveNetWaveTableAudioProcessorEditor::WaveNetWaveTableAudioProcessorEditor (Wave
     sustainSlider.setRange(1.0f,5000.0f); // 0.1ms - 5000ms attack time
     sustainSlider.setTextValueSuffix(" ms");
     sustainSlider.getNumDecimalPlacesToDisplay();
-    sustainSlider.setTextBoxStyle(Slider::TextBoxBelow, true, 40.0, 20.0);
+    sustainSlider.setTextBoxStyle(Slider::TextBoxBelow, true, 50.0, 20.0);
     sustainSlider.addListener(this);
     addAndMakeVisible(&sustainSlider);
     
     sustainTree = new AudioProcessorValueTreeState::SliderAttachment (processor.tree, "sustain", sustainSlider);  // the correct way to interface the slider in editor with processor.
     
-    addAndMakeVisible(sustainLabel);
+    addAndMakeVisible(&sustainLabel);
     sustainLabel.setText("Sustain", dontSendNotification);
     sustainLabel.attachToComponent(&sustainSlider, false);
     
@@ -72,13 +78,13 @@ WaveNetWaveTableAudioProcessorEditor::WaveNetWaveTableAudioProcessorEditor (Wave
     releaseSlider.setRange(1.0f,5000.0f); // 0.1ms - 5000ms release time
     releaseSlider.setTextValueSuffix(" ms");
     releaseSlider.getNumDecimalPlacesToDisplay();
-    releaseSlider.setTextBoxStyle(Slider::TextBoxBelow, true, 40.0, 20.0);
+    releaseSlider.setTextBoxStyle(Slider::TextBoxBelow, true, 50.0, 20.0);
     releaseSlider.addListener(this);
     addAndMakeVisible(&releaseSlider);
     
     releaseTree = new AudioProcessorValueTreeState::SliderAttachment (processor.tree, "release", releaseSlider);  // the correct way to interface the slider in editor with processor.
     
-    addAndMakeVisible(releaseLabel);
+    addAndMakeVisible(&releaseLabel);
     releaseLabel.setText("Release", dontSendNotification);
     releaseLabel.attachToComponent(&releaseSlider, false);
     
@@ -87,21 +93,21 @@ WaveNetWaveTableAudioProcessorEditor::WaveNetWaveTableAudioProcessorEditor (Wave
     ampSlider.setRange(0.0f,1.0f); // 0.0 - 1.0 master amp
     ampSlider.setValue(0.5f);
     ampSlider.getNumDecimalPlacesToDisplay();
-    ampSlider.setTextBoxStyle(Slider::TextBoxBelow, true, 40.0, 20.0);
+    ampSlider.setTextBoxStyle(Slider::TextBoxBelow, true, 50.0, 20.0);
     ampSlider.addListener(this);
     addAndMakeVisible(&ampSlider);
     
     ampTree = new AudioProcessorValueTreeState::SliderAttachment (processor.tree, "amp", ampSlider);  // the correct way to interface the slider in editor with processor.
     
     addAndMakeVisible(&ampLabel);
-    releaseLabel.setText("Amp", dontSendNotification);
-    releaseLabel.attachToComponent(&ampSlider, false);
+    ampLabel.setText("Amp", dontSendNotification);
+    ampLabel.attachToComponent(&ampSlider, false);
     
     // FreqSlider
     freqCutoffSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
     freqCutoffSlider.setRange(0.0f,1.0f); // Maximillian Lopass takes 0.0 - 1.0 as input parameter
     freqCutoffSlider.getNumDecimalPlacesToDisplay();
-    freqCutoffSlider.setTextBoxStyle(Slider::TextBoxBelow, true, 40.0, 20.0);
+    freqCutoffSlider.setTextBoxStyle(Slider::TextBoxBelow, true, 50.0, 20.0);
     freqCutoffSlider.addListener(this);
     addAndMakeVisible(&freqCutoffSlider);
     
@@ -110,6 +116,24 @@ WaveNetWaveTableAudioProcessorEditor::WaveNetWaveTableAudioProcessorEditor (Wave
     addAndMakeVisible(&freqCutoffLabel);
     freqCutoffLabel.setText("Cutoff", dontSendNotification);
     freqCutoffLabel.attachToComponent(&freqCutoffSlider, false);
+    
+    // InterpolationSlider
+    
+    interpolationSlider.setSliderStyle(Slider::SliderStyle::LinearHorizontal);
+    interpolationSlider.setRange(0,100); // Maximillian Lopass takes 0.0 - 1.0 as input parameter
+    //interpolationSlider.getNumDecimalPlacesToDisplay();
+    interpolationSlider.setTextBoxStyle(Slider::NoTextBox, true, 50.0, 20.0);
+    interpolationSlider.addListener(this);
+    addAndMakeVisible(&interpolationSlider);
+    
+    interpolationTree = new AudioProcessorValueTreeState::SliderAttachment (processor.tree, "interpolation", interpolationSlider);  // the correct way to interface the slider in editor with processor.
+
+    addAndMakeVisible(&interpolationLabel);
+    interpolationLabel.setJustificationType(Justification::centredTop);
+    interpolationLabel.setText("Interpolation", dontSendNotification);
+    interpolationLabel.attachToComponent(&interpolationSlider, false);
+    
+    
     
     // Change look and feel of all sliders
     getLookAndFeel().setColour(Slider::thumbColourId, Colours::deeppink);
@@ -126,11 +150,12 @@ WaveNetWaveTableAudioProcessorEditor::~WaveNetWaveTableAudioProcessorEditor()
 {
 
     attackTree = nullptr;
-    decayTree= nullptr;
-    sustainTree= nullptr;
-    releaseTree= nullptr;
-    ampTree= nullptr;
-    freqCutoffTree= nullptr;
+    decayTree = nullptr;
+    sustainTree = nullptr;
+    releaseTree = nullptr;
+    ampTree = nullptr;
+    freqCutoffTree = nullptr;
+    interpolationTree = nullptr;
 }
 
 //==============================================================================
@@ -153,8 +178,10 @@ void WaveNetWaveTableAudioProcessorEditor::resized()
     area.removeFromTop    (headerHeight);
     area.removeFromBottom (footerHeight);
     
+    auto pluginArea = area;
+    
     // >>> Sliders..this is the correct way to "sequentially" add objects by removing bounds from the original window
-    auto sliderWidth = 50;
+    auto sliderWidth = 60;
     attackSlider.setBounds(area.removeFromLeft(sliderWidth));
     decaySlider.setBounds(area.removeFromLeft(sliderWidth));
     sustainSlider.setBounds(area.removeFromLeft(sliderWidth));
@@ -162,18 +189,39 @@ void WaveNetWaveTableAudioProcessorEditor::resized()
     ampSlider.setBounds(area.removeFromLeft(sliderWidth));
     freqCutoffSlider.setBounds(area.removeFromLeft(sliderWidth));
     
-    // >>> Peak Meter
-    auto peakMeterWidth = 30;
-    Meter.setBounds(area.removeFromLeft(peakMeterWidth));
+    auto remainArea = area;
     
-    // >>> Add the combo box
-    auto comboBoxHeight = 100;
-    //area.removeFromLeft(comboBoxWidth);
-    oscGUI.setBounds(area.removeFromTop(comboBoxHeight));
+    // >>> Add type button
+    auto buttonWidth = 240;
+    typeButton.setBounds((area.removeFromTop(headerHeight)).removeFromLeft(buttonWidth).reduced(20,0));
+    // >>> Add the first combo box
+    auto comboBoxHeight = 80;
+    auto comboBoxWidth = 120;
+    oscGUI.setBounds((area.removeFromTop(comboBoxHeight)).removeFromLeft(comboBoxWidth).reduced(0, 20));
+    
+    // >>> Add the second combo box base on position of the first one
+    auto oscPos = oscGUI.getBounds();
+    auto oscXPos = oscGUI.getX();
+    oscPos.setX(oscXPos+comboBoxWidth);
+    oscGUI2.setBounds(oscPos);
+    
+    
+    // >>> Add the interpolation slider
+    auto sliderHeightHorizon = 20;
+    auto sliderWidthHorizon = 250;
+    interpolationSlider.setBounds((area.removeFromTop(sliderHeightHorizon)).removeFromLeft(sliderWidthHorizon).reduced(20,0));
+    
     
     // >>> Add wave window
-    auto windowHeight = area.getHeight();
-    waveWindow.setBounds(area.removeFromTop(windowHeight).reduced(20,20)); //`reduced()` puts a border around the window
+    auto windowHeight = 250;
+    auto waveWindowPos = (area.removeFromTop(windowHeight)).removeFromLeft(sliderWidthHorizon).reduced(20,20);
+    waveWindow.setBounds(waveWindowPos); //`reduced()` puts a border around the window
+    
+    
+    // >>> Peak Meter
+    auto peakMeterWidth = 80;
+    Meter.setBounds(pluginArea.removeFromRight(peakMeterWidth).reduced(20,0));
+    
     
 }
 
@@ -199,6 +247,9 @@ void WaveNetWaveTableAudioProcessorEditor::sliderValueChanged(Slider* slider)
     else if (slider == &freqCutoffSlider) {
         processor.freqCutoff = freqCutoffSlider.getValue();
     }
+    else if (slider == &interpolationSlider) {
+        processor.interpolation = interpolationSlider.getValue();
+    }
 }
 
 //==============================================================================
@@ -206,4 +257,31 @@ void WaveNetWaveTableAudioProcessorEditor::timerCallback()
 {
     //DBG(processor.getVppm());
     Meter.setValue(processor.getVppm());
+    if (oscGUI.comboBoxChangeState == true)
+    {
+        waveWindow.repaint();
+        oscGUI.comboBoxChangeState = false;
+    }
+    
+}
+
+void WaveNetWaveTableAudioProcessorEditor::buttonClicked(Button *button)
+{
+    if (button == &typeButton)
+    {
+        if (processor.buttonState == false)
+        {
+            typeButton.setButtonText("Neural Wavetable");
+            typeButton.setColour(TextButton::buttonOnColourId, Colours::lightskyblue);
+            processor.buttonState = true;
+            
+        }
+        else
+        {
+            typeButton.setButtonText("Wavetable");
+            processor.buttonState = false;
+        }
+    }
+    
+    
 }
