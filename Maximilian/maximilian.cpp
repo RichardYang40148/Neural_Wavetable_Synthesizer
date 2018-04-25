@@ -430,13 +430,14 @@ void maxiOsc::interpolationRead(float interpolation, int mode, bool reverse) {
         if (interpolation == 100){
             //TODO: no interpolation
             //relpath for plunin: ../../Wavetable/prerender/
-            filename = "../../../../prerender/" + filefolder + "/" + filefolder + "_1.00.txt";
+            //relpath for  stand alone ../../../../prerender/
+            filename = "/Users/richardyang/Documents/GTCMT/Spring2018/MUSI-8903/proj/GitHub_Neural_Wavetable_Synthesizer/prerender/" + filefolder + "/" + filefolder + "_1.00.txt";
         }
         else if (interpolation < 10){
-            filename = "../../../../prerender/" + filefolder + "/" + filefolder + "_0.0" + std::to_string((int)interpolation) + ".txt";
+            filename = "/Users/richardyang/Documents/GTCMT/Spring2018/MUSI-8903/proj/GitHub_Neural_Wavetable_Synthesizer/prerender/" + filefolder + "/" + filefolder + "_0.0" + std::to_string((int)interpolation) + ".txt";
         }
         else{
-            filename = "../../../../prerender/" + filefolder + "/" + filefolder + "_0." + std::to_string((int)interpolation) + ".txt";
+            filename = "/Users/richardyang/Documents/GTCMT/Spring2018/MUSI-8903/proj/GitHub_Neural_Wavetable_Synthesizer/prerender/" + filefolder + "/" + filefolder + "_0." + std::to_string((int)interpolation) + ".txt";
         }
         
         wavenetBuffer[0] = 0;
@@ -455,7 +456,7 @@ void maxiOsc::interpolationRead(float interpolation, int mode, bool reverse) {
         
         else
         {
-            std::cout<<"no file"<<std::endl;
+            //std::cout<<"no file"<<std::endl;
         }
     }
     

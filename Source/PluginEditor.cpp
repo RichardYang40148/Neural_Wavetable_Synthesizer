@@ -166,7 +166,6 @@ void WaveNetWaveTableAudioProcessorEditor::paint (Graphics& g)
 {
     // (Our component is opaque, so we must completely fill the background with a solid colour)
     g.fillAll (getLookAndFeel().findColour (ResizableWindow::backgroundColourId));
-
     g.setColour (Colours::white);
     g.setFont (15.0f);
     g.drawFittedText ("WaveNet WaveTable Synth by Hanoi Hantrakul x Richard Yang", getLocalBounds(), Justification::bottom, 1);
@@ -262,7 +261,7 @@ void WaveNetWaveTableAudioProcessorEditor::timerCallback()
 {
     //DBG(processor.getVppm());
     Meter.setValue(processor.getVppm());
-    if (oscGUI.comboBoxChangeState == true)
+    if (oscGUI.comboBoxChangeState == true || oscGUI2.comboBoxChangeState == true)
     {
         waveWindow.iWaveMode = *processor.tree.getRawParameterValue("wavetype");
         waveWindow.repaint();
@@ -297,6 +296,7 @@ void WaveNetWaveTableAudioProcessorEditor::buttonClicked(Button *button)
             oscGUI2.setVisible(false);
             interpolationSlider.setVisible(false);
             interpolationLabel.setVisible(false);
+            
             
         }
     }
