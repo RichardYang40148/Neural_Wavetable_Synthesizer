@@ -19,7 +19,6 @@ processor(p)
     oscMenu.addItem("Sine", 1);
     oscMenu.addItem("Saw", 2);
     oscMenu.addItem("Triangle", 3);
-    oscMenu.addItem("WaveNet", 4);
     oscMenu.setJustificationType(Justification::centred);
     addAndMakeVisible(&oscMenu);
     oscMenu.addListener(this);

@@ -188,12 +188,10 @@ void WaveNetWaveTableAudioProcessor::processBlock (AudioBuffer<float>& buffer, M
         {
             
             if (!buttonState) {
-                //std::cout<<0<<std::endl;
-                // Wave selection
+                
                 myVoice->getOscType(tree.getRawParameterValue("wavetype"));
             }
             else{
-                //std::cout<<1<<std::endl;
                 
                 myVoice->getInterpolationFile(tree.getRawParameterValue("interpolation"));
                 myVoice->getNeuralOscType(tree.getRawParameterValue("wavetype"),tree.getRawParameterValue("wavetype2") );    

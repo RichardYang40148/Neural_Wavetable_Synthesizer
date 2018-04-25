@@ -43,11 +43,45 @@ void WaveWindow::paint (Graphics& g)
 //                Justification::centred, true);   // draw some placeholder text
     
     int waveTableLength = 514;
-    for (int i = 0; i < waveTableLength; i++) {
-        float x_pos = ((float)i / (float)waveTableLength) * getLocalBounds().getWidth();
-        float y_pos = getLocalBounds().getHeight() * ((wavenetBuffer[i] + 1)/2);
-        g.setColour(Colours::lightskyblue);
-        g.drawEllipse(x_pos, y_pos, 1.0f, 1.0f, 1.0f);
+    if (bIsWavenet){
+        for (int i = 0; i < waveTableLength; i++) {
+            float x_pos = ((float)i / (float)waveTableLength) * getLocalBounds().getWidth();
+            float y_pos = getLocalBounds().getHeight() * ((wavenetBuffer[i] + 1)/2);
+            g.setColour(Colours::lightskyblue);
+            g.drawEllipse(x_pos, y_pos, 1.0f, 1.0f, 1.0f);
+        }
+    }
+    else{
+        
+        
+    
+        if (iWaveMode == 0) {
+            for (int i = 0; i < waveTableLength; i++) {
+                float x_pos = ((float)i / (float)waveTableLength) * getLocalBounds().getWidth();
+                float y_pos = getLocalBounds().getHeight() * ((sineBuffer[i] + 1)/2);
+                g.setColour(Colours::lightskyblue);
+                g.drawEllipse(x_pos, y_pos, 1.0f, 1.0f, 1.0f);
+            }
+        }
+        else if (iWaveMode == 1) {
+            for (int i = 0; i < waveTableLength; i++) {
+                float x_pos = ((float)i / (float)waveTableLength) * getLocalBounds().getWidth();
+                float y_pos = getLocalBounds().getHeight() * ((sawBuffer[i] + 1)/2);
+                g.setColour(Colours::lightskyblue);
+                g.drawEllipse(x_pos, y_pos, 1.0f, 1.0f, 1.0f);
+            }
+        }
+        else{
+            for (int i = 0; i < waveTableLength; i++) {
+                float x_pos = ((float)i / (float)waveTableLength) * getLocalBounds().getWidth();
+                float y_pos = getLocalBounds().getHeight() * ((triBuffer[i] + 1)/2);
+                g.setColour(Colours::lightskyblue);
+                g.drawEllipse(x_pos, y_pos, 1.0f, 1.0f, 1.0f);
+            }
+        }
+    
+    
+        
     }
 }
 

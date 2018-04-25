@@ -81,7 +81,9 @@ public:
 
 //-----------------------------
 extern double wavenetBuffer[514];
-extern double wavenetBuffer_test[514];
+extern double sineBuffer[514];
+extern double sawBuffer[514];
+extern double triBuffer[514];
 //-----------------------------
 
 class maxiOsc {
@@ -114,7 +116,9 @@ public:
     
     //-----------------------------------
     int prevInterpolation = 101;
-    void interpolationRead(float interpolation, int mode);
+    int prevMode = 101;
+    void interpolationLoad();
+    void interpolationRead(float interpolation, int mode, bool reverse);
     double wavenetbuf4(double frequency);
     //-----------------------------------
 	

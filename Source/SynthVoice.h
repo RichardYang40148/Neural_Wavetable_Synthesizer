@@ -33,7 +33,7 @@ public:
     }
     void getInterpolationFile(float* interpolation)
     {
-        osc1.interpolationRead(float(*interpolation), int(theWave));
+        osc1.interpolationRead(float(*interpolation), int(iWaveCombination), bool(bInterpolationReversed));
     }
     
     //===========================================
@@ -43,10 +43,72 @@ public:
         theWave = *selection; //dereferenec the selection
         theMode = 0;
     }
+    /* Sloppy version of handling wave combination
+    sinsin     0
+    sinsaw     3 1
+    sintri     4 0
     
+    sawsin     3 0
+    sawsaw     1
+    sawtri     5 1
+    
+    trisin     4 1
+    trisaw     5 0
+    tritri     2
+    */
     void getNeuralOscType(float* selection, float* selection2)
     {
-        theWave = *selection + *selection2; //dereferenec the selection
+        if(*selection ==0)
+        {
+            if(*selection2 ==0)
+            {
+                iWaveCombination = 0;
+            }
+            else if (*selection2 ==1)
+            {
+                iWaveCombination = 3;
+                bInterpolationReversed = true;
+            }
+            else
+            {
+                iWaveCombination = 4;
+                bInterpolationReversed = false;
+            }
+        }
+        else if (*selection ==1)
+        {
+            if(*selection2 ==0)
+            {
+                iWaveCombination = 3;
+                bInterpolationReversed = false;
+            }
+            else if (*selection2 ==1)
+            {
+                iWaveCombination = 1;
+            }
+            else
+            {
+                iWaveCombination = 5;
+                bInterpolationReversed = true;
+            }
+        }
+        else
+        {
+            if(*selection2 ==0)
+            {
+                iWaveCombination = 4;
+                bInterpolationReversed = true;
+            }
+            else if (*selection2 ==1)
+            {
+                iWaveCombination = 5;
+                bInterpolationReversed = false;
+            }
+            else
+            {
+                iWaveCombination = 2;
+            }
+        }
         theMode = 1;
     }
     
@@ -133,6 +195,10 @@ private:
     double masterAmp;
     int theWave;  // wave type selection index
     int theMode;  // wave mode selection index
+    
+    int iWaveCombination = 0;  // wave type selection index
+    bool bInterpolationReversed = false;  // wave mode selection index
+    
     float theCutoff;  // LPF cutoff
     
     maxiOsc osc1;
