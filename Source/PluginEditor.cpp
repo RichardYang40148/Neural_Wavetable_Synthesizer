@@ -294,6 +294,8 @@ void WaveNetWaveTableAudioProcessorEditor::buttonClicked(Button *button)
             waveWindow.repaint();
             processor.buttonState = false;
             oscGUI2.setVisible(false);
+            //oscGUI.resized(setBounds(300, 300, 300, <#int height#>));
+            
             interpolationSlider.setVisible(false);
             interpolationLabel.setVisible(false);
             
