@@ -33,11 +33,12 @@
 
 #include "maximilian.h"
 #include "math.h"
-
-//include for file reading
-#include <iostream>
-#include <fstream>
-#include <string>
+#include "prerender.h"
+////include for file reading
+//#include <iostream>
+//#include <fstream>
+//#include <string>
+#include <map>
 
 //This used to be important for dealing with multichannel playback
 float chandiv= 1;
@@ -257,120 +258,18 @@ double maxiOsc::sinebuf4(double frequency) {
 }
 
 //--------------------------------------------------------------------------------
-/*
-void maxiOsc::interpolationLoad() {
-    std::string filefolder;
-    std::string filename;
-    
-    //filefolder condition: according to the selected wave combination, select the corresponding folder
-    for (int mode = 0; mode < 3; mode++)
-    {
-        
-        if (mode == 0)
-        {
-            filefolder = "SawSin";
-            for (int interpolation = 0; interpolation < 101; interpolation++)
-            {
-                if (interpolation == 0){
-                    //TODO: no interpolation
-                    //relpath: ../../../../prerender/
-                    filename = "../../../../prerender/" + filefolder + "/" + filefolder + "_0.0" + std::to_string((int)interpolation) + ".txt";
-                }
-                else if (interpolation < 10){
-                    filename = "../../../../prerender/" + filefolder + "/" + filefolder + "_0.0" + std::to_string((int)interpolation) + ".txt";
-                }
-                else{
-                    filename = "../../../../prerender/" + filefolder + "/" + filefolder + "_0." + std::to_string((int)interpolation) + ".txt";
-                }
-                pppfWavenetBuffer[mode][interpolation][0] = 0;
-                if(std::ifstream in {filename})
-                {
-                    double x;
-                    int i = 0;
-                    while((in >> x) && in.ignore()) //read number, ignore comma, repeat
-                    {
-                        pppfWavenetBuffer[mode][interpolation][i] = x;
-                        i = i+1;
-                    }
-                    pppfWavenetBuffer[mode][interpolation][513]  = 0;
-                }
-            }
-        }
-        else if (mode ==1)
-        {
-            filefolder = "SinTri";
-            for (int interpolation = 0; interpolation < 101; interpolation++)
-            {
-                if (interpolation == 0){
-                    //TODO: no interpolation
-                    //relpath: ../../../../prerender/
-                    filename = "../../../../prerender/" + filefolder + "/" + filefolder + "_0.0" + std::to_string((int)interpolation) + ".txt";
-                }
-                else if (interpolation < 10){
-                    filename = "../../../../prerender/" + filefolder + "/" + filefolder + "_0.0" + std::to_string((int)interpolation) + ".txt";
-                }
-                else{
-                    filename = "../../../../prerender/" + filefolder + "/" + filefolder + "_0." + std::to_string((int)interpolation) + ".txt";
-                }
-                pppfWavenetBuffer[mode][interpolation][0] = 0;
-                if(std::ifstream in {filename})
-                {
-                    double x;
-                    int i = 0;
-                    while((in >> x) && in.ignore()) //read number, ignore comma, repeat
-                    {
-                        pppfWavenetBuffer[mode][interpolation][i] = x;
-                        i = i+1;
-                    }
-                    pppfWavenetBuffer[mode][interpolation][513]  = 0;
-                }
-            }
-        }
-        else
-        {
-            filefolder = "TriSaw";
-            for (int interpolation = 0; interpolation < 101; interpolation++)
-            {
-                if (interpolation == 0){
-                    //TODO: no interpolation
-                    //relpath: ../../../../prerender/
-                    filename = "../../../../prerender/" + filefolder + "/" + filefolder + "_0.0" + std::to_string((int)interpolation) + ".txt";
-                }
-                else if (interpolation < 10){
-                    filename = "../../../../prerender/" + filefolder + "/" + filefolder + "_0.0" + std::to_string((int)interpolation) + ".txt";
-                }
-                else{
-                    filename = "../../../../prerender/" + filefolder + "/" + filefolder + "_0." + std::to_string((int)interpolation) + ".txt";
-                }
-                pppfWavenetBuffer[mode][interpolation][0] = 0;
-                if(std::ifstream in {filename})
-                {
-                    double x;
-                    int i = 0;
-                    while((in >> x) && in.ignore()) //read number, ignore comma, repeat
-                    {
-                        pppfWavenetBuffer[mode][interpolation][i] = x;
-                        i = i+1;
-                    }
-                    pppfWavenetBuffer[mode][interpolation][513]  = 0;
-                }
-            }
-        }
-        
-    }
-}
-*/
 void maxiOsc::interpolationRead(float interpolation, int mode, bool reverse) {
     if ((int)interpolation != prevInterpolation || mode != prevMode){
         prevInterpolation = (int)interpolation;
         prevMode = mode;
         string filefolder;
         string filename;
-        
-        //filefolder condition: according to the selected wave combination, select the corresponding folder
+        int index = 0;
+        //according to the selected wave combination, select the corresponding index: SawSin:0-100, SinTri:101-201, TriSaw" 202-302;
         if ((mode == 0) || (mode == 4))
         {
-            filefolder = "SinTri";
+            //filefolder = "SinTri";
+            index = 101;
             if (mode == 0)
             {
                 interpolation = 0;
@@ -385,7 +284,8 @@ void maxiOsc::interpolationRead(float interpolation, int mode, bool reverse) {
         }
         else if ((mode == 1) || (mode == 3))
         {
-            filefolder = "SawSin";
+            //filefolder = "SawSin";
+            index = 0;
             if (mode == 1)
             {
                 interpolation = 0;
@@ -400,7 +300,8 @@ void maxiOsc::interpolationRead(float interpolation, int mode, bool reverse) {
         }
         else if ((mode == 2) || (mode == 5))
         {
-            filefolder = "TriSaw";
+            //filefolder = "TriSaw";
+            index = 202;
             if (mode == 2)
             {
                 interpolation = 0;
@@ -413,44 +314,20 @@ void maxiOsc::interpolationRead(float interpolation, int mode, bool reverse) {
                 }
             }
         }
-        //filename condition: according to the selected interpolation, select the corresponding prerendered file
-        if (interpolation == 100){
-            //TODO: no interpolation
-            //relpath for plunin: ../../Wavetable/prerender/
-            //relpath for  stand alone ../../../../prerender/
-            filename = "/Users/richardyang/Documents/GTCMT/Spring2018/MUSI-8903/proj/GitHub_Neural_Wavetable_Synthesizer/prerender/" + filefolder + "/" + filefolder + "_1.00.txt";
-        }
-        else if (interpolation < 10){
-            filename = "/Users/richardyang/Documents/GTCMT/Spring2018/MUSI-8903/proj/GitHub_Neural_Wavetable_Synthesizer/prerender/" + filefolder + "/" + filefolder + "_0.0" + std::to_string((int)interpolation) + ".txt";
-        }
-        else{
-            filename = "/Users/richardyang/Documents/GTCMT/Spring2018/MUSI-8903/proj/GitHub_Neural_Wavetable_Synthesizer/prerender/" + filefolder + "/" + filefolder + "_0." + std::to_string((int)interpolation) + ".txt";
-        }
-        
+        //according to the selected interpolation, select the corresponding prerendered file
         wavenetBuffer[0] = 0;
-        if(std::ifstream in {filename})
+        for (int i =0; i<512 ; i++)
         {
             
-            double x;
-            int i = 0;
-            while((in >> x) && in.ignore()) //read number, ignore comma, repeat
-            {
-                wavenetBuffer[i] = x;
-                i = i+1;
-            }
-            wavenetBuffer[513] = 0;
+            wavenetBuffer[i+1] = prerenderWabetable[index+ (int)interpolation][i];
         }
-        
-        else
-        {
-            //std::cout<<"no file"<<std::endl;
-        }
+        wavenetBuffer[513] = 0;
     }
     
 }
 
 double maxiOsc::wavenetbuf4(double frequency) {
-    //This is a sinewave oscillator that uses 4 point interpolation on a 514 point buffer
+    //This is a wavenet wavetable oscillator that uses 4 point interpolation on a 514 point buffer
     double remainder;
     double a,b,c,d,a1,a2,a3;
     phase += 512./(maxiSettings::sampleRate/(frequency));

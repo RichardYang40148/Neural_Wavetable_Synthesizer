@@ -45,7 +45,9 @@
 #include <cerrno>
 #include <queue>
 #include <vector>
-
+//-----------------------------
+#include "prerender.h"
+//-----------------------------
 #if !defined(_WIN32) && (defined(unix) || defined(__unix__) || defined(__unix) || (defined(__APPLE__) && defined(__MACH__)))
 #define OS_IS_UNIX true
 #include <pthread.h>

@@ -46,7 +46,6 @@ static int addFile (const File& file,
 {
     MemoryBlock mb;
     file.loadFileAsData (mb);
-
     const String name (file.getFileName()
                            .replaceCharacter (' ', '_')
                            .replaceCharacter ('.', '_')
@@ -55,21 +54,31 @@ static int addFile (const File& file,
     std::cout << "Adding " << name << ": "
               << (int) mb.getSize() << " bytes" << std::endl;
 
-    headerStream << "    extern const double*  " << name << ";\r\n"
-                    "    const int           " << name << "Size = "
-                 << (int) 512 << ";\r\n\r\n";
-
-    static int tempNum = 0;
-
-    cppStream << "static const double temp" << ++tempNum << "[] = {";
+    //headerStream << "    double [301][512]  " << name << ";\r\n";
+                    //"    const int           " << name << "Size = "
+                 //<< (int) 512 << ";\r\n\r\n";
+    
+    int iOnes = name.toStdString()[10] - '0';
+    int iTens = name.toStdString()[9] - '0';
+    int iHundreds = name.toStdString()[7] - '0';
+    
+    cppStream << "{";
 
     StringArray temp;
     file.readLines(temp);
-    std::cout << temp[0] << std::endl;
-    cppStream << temp[0] << "};\r\n";
+    //std::cout << temp[0] << std::endl;
+    if (name.toStdString()!= "TriSaw_1_00_txt")
+    {
+        cppStream << temp[0] << "},\r\n";
+    }
+    else
+    {
+        cppStream << temp[0] << "}\r\n";
+    }
+    
 
-    cppStream << "const double* " << classname << "::" << name
-              << " = (const double*) temp" << tempNum << ";\r\n\r\n";
+    //cppStream << "const double* " << classname << "::" << name
+              //<< " = (const double*) temp" << tempNum << ";\r\n\r\n";
 
     return (int) mb.getSize();
 }
@@ -138,7 +147,8 @@ int main (int argc, char* argv[])
 
     auto files = sourceDirectory.findChildFiles (File::findFiles, true,
                                                  (argc > 4) ? argv[4] : "*");
-
+    
+    files.sort();
     if (files.isEmpty())
     {
         std::cout << "Didn't find any source files in: "
@@ -167,13 +177,19 @@ int main (int argc, char* argv[])
         return 0;
     }
 
-    *header << "/* (Auto-generated binary data file). */\r\n\r\n"
-               "#pragma once\r\n\r\n"
-               "namespace " << className << "\r\n"
-               "{\r\n";
+    *header << "/* (Auto-generated binary data file (for parsing wavetables into matrix)). */\r\n"
+               "/*index method: Saw = 0 , Sin 100, Tri 200, Saw = 300(repeat)*/\r\n\r\n"
+               "extern double prerenderWabetable[303][512];\r\n";
+               //"#pragma once\r\n\r\n"
+               //"namespace " << className << "\r\n"
+               //"{\r\n";
 
-    *cpp << "/* (Auto-generated binary data file). */\r\n\r\n"
-            "#include \"" << className << ".h\"\r\n\r\n";
+    *cpp << "/* (Auto-generated binary data file (for parsing wavetables into matrix)). */\r\n"
+            "/*index method: Saw = 0 , Sin 100, Tri 200, Saw = 300(repeat)*/\r\n\r\n"
+            "#include \"prerender.h\"\r\n\r\n"
+            "double prerenderWabetable[303][512] = {\r\n";
+    
+    
 
     int totalBytes = 0;
 
@@ -184,24 +200,24 @@ int main (int argc, char* argv[])
         // (avoid source control files and hidden files..)
         if (! isHiddenFile (file, sourceDirectory))
         {
-            if (file.getParentDirectory() != sourceDirectory)
-            {
-                *header << "  #ifdef " << file.getParentDirectory().getFileName().toUpperCase() << "\r\n";
-                *cpp << "#ifdef " << file.getParentDirectory().getFileName().toUpperCase() << "\r\n";
-
+//            if (file.getParentDirectory() != sourceDirectory)
+//            {
+//                *header << "  #ifdef " << file.getParentDirectory().getFileName().toUpperCase() << "\r\n";
+//                *cpp << "#ifdef " << file.getParentDirectory().getFileName().toUpperCase() << "\r\n";
+//
+//                totalBytes += addFile (file, className, *header, *cpp);
+//
+//                *header << "  #endif\r\n";
+//                *cpp << "#endif\r\n";
+//            }
+//            else
+//            {
                 totalBytes += addFile (file, className, *header, *cpp);
-
-                *header << "  #endif\r\n";
-                *cpp << "#endif\r\n";
-            }
-            else
-            {
-                totalBytes += addFile (file, className, *header, *cpp);
-            }
+//            }
         }
     }
 
-    *header << "}\r\n";
+    *cpp << "};\r\n";
 
     header = nullptr;
     cpp = nullptr;

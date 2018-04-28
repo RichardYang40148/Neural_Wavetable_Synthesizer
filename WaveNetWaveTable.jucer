@@ -3,10 +3,15 @@
 <JUCERPROJECT name="WaveNetWaveTable" projectType="audioplug" buildStandalone="1"
               jucerVersion="5.3.1" pluginFormats="buildVST,buildStandalone"
               pluginCharacteristicsValue="pluginProducesMidiOut,pluginWantsMidiIn"
-              headerPath="../../Maximilian" buildVST="1" buildVST3="0" buildAU="0"
-              buildAUv3="0" buildRTAS="0" buildAAX="0" enableIAA="0">
+              headerPath="../../Maximilian&#10;../../prerender" buildVST="1"
+              buildVST3="0" buildAU="0" buildAUv3="0" buildRTAS="0" buildAAX="0"
+              enableIAA="0">
   <MAINGROUP id="Z0KCue" name="WaveNetWaveTable">
     <GROUP id="{9B5BBDAA-5C0C-DBB6-453E-F3DCAC161757}" name="Source">
+      <GROUP id="{FAA1319D-6303-9F45-3B60-2F36EDCB377C}" name="prerender">
+        <FILE id="CAN0sX" name="prerender.cpp" compile="1" resource="0" file="prerender/prerender.cpp"/>
+        <FILE id="Ja3PhN" name="prerender.h" compile="0" resource="0" file="prerender/prerender.h"/>
+      </GROUP>
       <GROUP id="{B617A8AE-9855-20CC-7CD3-76B285465876}" name="Maximilian">
         <GROUP id="{70558616-37CE-48D9-13EE-E6C93EBF8401}" name="maximilianTest.xcodeproj"/>
         <FILE id="XYXaL3" name="maximilian.cpp" compile="1" resource="0" file="Maximilian/maximilian.cpp"/>
@@ -36,10 +41,6 @@
       <FILE id="xazeMc" name="Envelope.h" compile="0" resource="0" file="Source/Envelope.h"/>
       <FILE id="CMV6g6" name="WaveWindow.cpp" compile="1" resource="0" file="Source/WaveWindow.cpp"/>
       <FILE id="ySash1" name="WaveWindow.h" compile="0" resource="0" file="Source/WaveWindow.h"/>
-      <GROUP id="{FF833267-EDF8-6F28-DC42-B08388C683FB}" name="prerender">
-        <FILE id="zn6HCP" name="prerender.cpp" compile="1" resource="0" file="Source/prerender/prerender.cpp"/>
-        <FILE id="ktK6ti" name="prerender.h" compile="0" resource="0" file="Source/prerender/prerender.h"/>
-      </GROUP>
     </GROUP>
   </MAINGROUP>
   <LIVE_SETTINGS>
