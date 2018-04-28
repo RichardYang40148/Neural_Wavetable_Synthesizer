@@ -126,7 +126,7 @@ public:
             }
         }
         else{
-            return osc1.wavenetbuf4(frequency);
+            return osc1.wavenetbuf(frequency, false);
         }
     }
     

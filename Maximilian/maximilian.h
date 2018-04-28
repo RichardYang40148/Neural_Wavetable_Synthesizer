@@ -111,7 +111,6 @@ public:
 	double pulse(double frequency, double duty);
 	double noise();
 	double sinebuf(double frequency);
-	double sinebuf4(double frequency);
     double sawn(double frequency);
     double rect(double frequency, double duty=0.5);
 	void phaseReset(double phaseIn);
@@ -121,7 +120,7 @@ public:
     int prevMode = 101;
     void interpolationLoad();
     void interpolationRead(float interpolation, int mode, bool reverse);
-    double wavenetbuf4(double frequency);
+    double wavenetbuf(double frequency, bool smooth);
     //-----------------------------------
 	
 };

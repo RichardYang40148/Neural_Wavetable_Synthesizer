@@ -229,33 +229,6 @@ double maxiOsc::sinewave(double frequency) {
 	
 }
 
-double maxiOsc::sinebuf4(double frequency) {
-    //This is a sinewave oscillator that uses 4 point interpolation on a 514 point buffer
-	double remainder;
-	double a,b,c,d,a1,a2,a3;
-	phase += 512./(maxiSettings::sampleRate/(frequency));
-	if ( phase >= 511 ) phase -=512;
-	remainder = phase - floor(phase);
-	
-	if (phase==0) {
-		a=sineBuffer[(long) 512];
-		b=sineBuffer[(long) phase];
-		c=sineBuffer[(long) phase+1];
-		d=sineBuffer[(long) phase+2];
-		
-	} else {
-		a=sineBuffer[(long) phase-1];
-		b=sineBuffer[(long) phase];
-		c=sineBuffer[(long) phase+1];
-		d=sineBuffer[(long) phase+2];
-	}
-	
-	a1 = 0.5f * (c - a);
-	a2 = a - 2.5 * b + 2.f * c - 0.5f * d;
-	a3 = 0.5f * (d - a) + 1.5f * (b - c);
-	output = double (((a3 * remainder + a2) * remainder + a1) * remainder + b);
-	return(output);
-}
 
 //--------------------------------------------------------------------------------
 void maxiOsc::interpolationRead(float interpolation, int mode, bool reverse) {
@@ -326,34 +299,50 @@ void maxiOsc::interpolationRead(float interpolation, int mode, bool reverse) {
     
 }
 
-double maxiOsc::wavenetbuf4(double frequency) {
+double maxiOsc::wavenetbuf(double frequency, bool smooth) {
     //This is a wavenet wavetable oscillator that uses 4 point interpolation on a 514 point buffer
-    double remainder;
-    double a,b,c,d,a1,a2,a3;
-    phase += 512./(maxiSettings::sampleRate/(frequency));
-    if ( phase >= 511 ) phase -=512;
-    remainder = phase - floor(phase);
-    
-    if (phase==0) {
-        a=wavenetBuffer[(long) 512];
-        b=wavenetBuffer[(long) phase];
-        c=wavenetBuffer[(long) phase+1];
-        d=wavenetBuffer[(long) phase+2];
+    if (smooth)
+    {
+        double remainder;
+        double a,b,c,d,a1,a2,a3;
+        phase += 512./(maxiSettings::sampleRate/(frequency));
+        if ( phase >= 511 ) phase -=512;
+        remainder = phase - floor(phase);
         
-    } else {
-        a=wavenetBuffer[(long) phase-1];
-        b=wavenetBuffer[(long) phase];
-        c=wavenetBuffer[(long) phase+1];
-        d=wavenetBuffer[(long) phase+2];
+        if (phase==0) {
+            a=wavenetBuffer[(long) 512];
+            b=wavenetBuffer[(long) phase];
+            c=wavenetBuffer[(long) phase+1];
+            d=wavenetBuffer[(long) phase+2];
+            
+        } else {
+            a=wavenetBuffer[(long) phase-1];
+            b=wavenetBuffer[(long) phase];
+            c=wavenetBuffer[(long) phase+1];
+            d=wavenetBuffer[(long) phase+2];
+            
+        }
+        
+        a1 = 0.5f * (c - a);
+        a2 = a - 2.5 * b + 2.f * c - 0.5f * d;
+        a3 = 0.5f * (d - a) + 1.5f * (b - c);
+        output = double (((a3 * remainder + a2) * remainder + a1) * remainder + b);
+        return(output);
         
     }
-    
-    a1 = 0.5f * (c - a);
-    a2 = a - 2.5 * b + 2.f * c - 0.5f * d;
-    a3 = 0.5f * (d - a) + 1.5f * (b - c);
-    output = double (((a3 * remainder + a2) * remainder + a1) * remainder + b);
-    return(output);
+    else
+    {
+        //This is a wavenet wavetable oscillator that uses linear interpolation on a 514 point buffer
+        double remainder;
+        phase += 512./(maxiSettings::sampleRate/(frequency*chandiv));
+        if ( phase >= 511 ) phase -=512;
+        remainder = phase - floor(phase);
+        output = (double) ((1-remainder) * wavenetBuffer[1+ (long) phase] + remainder * wavenetBuffer[2+(long) phase]);
+        return(output);
+    }
 }
+
+
 //--------------------------------------------------------------------------------
 
 double maxiOsc::sinebuf(double frequency) { //specify the frequency of the oscillator in Hz / cps etc.
