@@ -45,24 +45,24 @@ private:
     
     // Create Tree objects: this is JUCE's way of communicating values between `PluginEditor` and `PluginProcessor`
     ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> attackTree;
-    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> decayTree;
-    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> sustainTree;
+    //ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> decayTree;
+    //ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> sustainTree;
     ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> releaseTree;
     ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> ampTree;
     ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> freqCutoffTree;
     ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> interpolationTree;
     
     Slider attackSlider;
-    Slider decaySlider;
-    Slider sustainSlider;
+    //Slider decaySlider;
+    //Slider sustainSlider;
     Slider releaseSlider;
     Slider ampSlider;
     Slider freqCutoffSlider;
     Slider interpolationSlider;
     
     Label attackLabel;
-    Label decayLabel;
-    Label sustainLabel;
+    //Label decayLabel;
+    //Label sustainLabel;
     Label releaseLabel;
     Label ampLabel;
     Label freqCutoffLabel;
@@ -70,6 +70,8 @@ private:
     
     // Button for mode switch (Normal v.s. Neural Wavetable)
     TextButton typeButton;
+    // Button for smooth switch (switch on to activate smoothing, off to use original wavetable)
+    TextButton smoothButton;
     // For PPM meter
     MeterComponent Meter;
     

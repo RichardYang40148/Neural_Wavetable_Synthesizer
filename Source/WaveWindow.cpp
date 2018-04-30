@@ -42,9 +42,9 @@ void WaveWindow::paint (Graphics& g)
 //    g.drawText ("WaveWindow", getLocalBounds(),
 //                Justification::centred, true);   // draw some placeholder text
     
-    int waveTableLength = 514;
+    int waveTableLength = 512;
     if (bIsWavenet){
-        for (int i = 0; i < waveTableLength; i++) {
+        for (int i = 1; i < waveTableLength-1; i++) {
             float x_pos = ((float)i / (float)waveTableLength) * getLocalBounds().getWidth();
             float y_pos = getLocalBounds().getHeight() * ((wavenetBuffer[i] + 1)/2);
             g.setColour(Colours::lightskyblue);
@@ -56,7 +56,7 @@ void WaveWindow::paint (Graphics& g)
         
     
         if (iWaveMode == 0) {
-            for (int i = 0; i < waveTableLength; i++) {
+            for (int i = 1; i < waveTableLength-1; i++) {
                 float x_pos = ((float)i / (float)waveTableLength) * getLocalBounds().getWidth();
                 float y_pos = getLocalBounds().getHeight() * ((sineBuffer[i] + 1)/2);
                 g.setColour(Colours::lightskyblue);
@@ -64,7 +64,7 @@ void WaveWindow::paint (Graphics& g)
             }
         }
         else if (iWaveMode == 1) {
-            for (int i = 0; i < waveTableLength; i++) {
+            for (int i = 1; i < waveTableLength-1; i++) {
                 float x_pos = ((float)i / (float)waveTableLength) * getLocalBounds().getWidth();
                 float y_pos = getLocalBounds().getHeight() * ((sawBuffer[i] + 1)/2);
                 g.setColour(Colours::lightskyblue);
@@ -72,7 +72,7 @@ void WaveWindow::paint (Graphics& g)
             }
         }
         else{
-            for (int i = 0; i < waveTableLength; i++) {
+            for (int i = 1; i < waveTableLength-1; i++) {
                 float x_pos = ((float)i / (float)waveTableLength) * getLocalBounds().getWidth();
                 float y_pos = getLocalBounds().getHeight() * ((triBuffer[i] + 1)/2);
                 g.setColour(Colours::lightskyblue);

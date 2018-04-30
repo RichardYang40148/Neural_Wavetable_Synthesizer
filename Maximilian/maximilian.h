@@ -29,7 +29,11 @@
  *	OTHER DEALINGS IN THE SOFTWARE.
  *
  */
-
+/*
+ ==============================================================================
+ Edit by:  Richard Yang
+ ==============================================================================
+ */
 #ifndef MAXIMILIAN_H
 #define MAXIMILIAN_H
 
@@ -81,12 +85,13 @@ public:
 	}
 };
 
-//-----------------------------
+
+//==============================================================================
 extern double wavenetBuffer[514];
 extern double sineBuffer[514];
 extern double sawBuffer[514];
 extern double triBuffer[514];
-//-----------------------------
+//==============================================================================
 
 class maxiOsc {
 	
@@ -115,13 +120,13 @@ public:
     double rect(double frequency, double duty=0.5);
 	void phaseReset(double phaseIn);
     
-    //-----------------------------------
+    //==============================================================================
     int prevInterpolation = 101;
     int prevMode = 101;
     void interpolationLoad();
-    void interpolationRead(float interpolation, int mode, bool reverse);
-    double wavenetbuf(double frequency, bool smooth);
-    //-----------------------------------
+    void interpolationRead(float interpolation, int mode, bool reverse, bool smooth);
+    double wavenetbuf(double frequency);
+    //==============================================================================
 	
 };
 
@@ -147,39 +152,6 @@ public:
 	double lopass(double input,double cutoff);
 	double hipass(double input,double cutoff);
 	
-};
-
-
-class maxiEnv {
-	
-	
-public:
-	double ar(double input, double attack=1, double release=0.9, long holdtime=1, int trigger=0);
-	double adsr(double input, double attack=1, double decay=0.99, double sustain=0.125, double release=0.9, long holdtime=1, int trigger=0);
-    double adsr(double input,int trigger);
-	double input;
-	double output;
-	double attack;
-	double decay;
-	double sustain;
-	double release;
-	double amplitude;
-    void setAttack(double attackMS);
-    void setRelease(double releaseMS);
-    void setDecay(double decayMS);
-    void setSustain(double sustainL);
-	int trigger;
-	long holdtime=1;
-	long holdcount;
-	int attackphase,decayphase,sustainphase,holdphase,releasephase;
-};
-
-class convert {
-public:
-	static double mtof(int midinote);
-    static int ftom(double frequency);
-    static double atodb(double amplitude);
-    static double dbtoa(double amplitude);
 };
 
 

@@ -41,6 +41,8 @@
       <FILE id="xazeMc" name="Envelope.h" compile="0" resource="0" file="Source/Envelope.h"/>
       <FILE id="CMV6g6" name="WaveWindow.cpp" compile="1" resource="0" file="Source/WaveWindow.cpp"/>
       <FILE id="ySash1" name="WaveWindow.h" compile="0" resource="0" file="Source/WaveWindow.h"/>
+      <FILE id="tR6Gjb" name="ADSR.cpp" compile="1" resource="0" file="Source/ADSR.cpp"/>
+      <FILE id="eujV5M" name="ADSR.h" compile="0" resource="0" file="Source/ADSR.h"/>
     </GROUP>
   </MAINGROUP>
   <LIVE_SETTINGS>

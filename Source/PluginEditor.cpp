@@ -24,6 +24,15 @@ WaveNetWaveTableAudioProcessorEditor::WaveNetWaveTableAudioProcessorEditor (Wave
     addAndMakeVisible(typeButton);
     typeButton.addListener(this);
     
+    
+    //Smooth button
+    smoothButton.setButtonText("Wave Smoothing");
+    smoothButton.setClickingTogglesState(true);
+    addAndMakeVisible(smoothButton);
+    smoothButton.setVisible(false);
+    smoothButton.addListener(this);
+    
+    
     //Drop down box
     addAndMakeVisible(&oscGUI);
     addAndMakeVisible(&oscGUI2);
@@ -44,35 +53,6 @@ WaveNetWaveTableAudioProcessorEditor::WaveNetWaveTableAudioProcessorEditor (Wave
     attackLabel.setText("Attack", dontSendNotification);
     attackLabel.attachToComponent(&attackSlider, false);
     
-    // DecaySlider
-    decaySlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
-    decaySlider.setRange(1.0f,5000.0f); // 0.1ms - 5000ms attack time
-    decaySlider.setTextValueSuffix(" ms");
-    decaySlider.getNumDecimalPlacesToDisplay();
-    decaySlider.setTextBoxStyle(Slider::NoTextBox, true, 50.0, 20.0);
-    decaySlider.addListener(this);
-    addAndMakeVisible(&decaySlider);
-    
-    decayTree = new AudioProcessorValueTreeState::SliderAttachment (processor.tree, "decay", decaySlider);  // the correct way to interface the slider in editor with processor.
-    
-    addAndMakeVisible(decaySlider);
-    decayLabel.setText("Decay", dontSendNotification);
-    decayLabel.attachToComponent(&decaySlider, false);
-    
-    // SustainSlider
-    sustainSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
-    sustainSlider.setRange(1.0f,5000.0f); // 0.1ms - 5000ms attack time
-    sustainSlider.setTextValueSuffix(" ms");
-    sustainSlider.getNumDecimalPlacesToDisplay();
-    sustainSlider.setTextBoxStyle(Slider::NoTextBox, true, 50.0, 20.0);
-    sustainSlider.addListener(this);
-    addAndMakeVisible(&sustainSlider);
-    
-    sustainTree = new AudioProcessorValueTreeState::SliderAttachment (processor.tree, "sustain", sustainSlider);  // the correct way to interface the slider in editor with processor.
-    
-    addAndMakeVisible(&sustainLabel);
-    sustainLabel.setText("Sustain", dontSendNotification);
-    sustainLabel.attachToComponent(&sustainSlider, false);
     
     // ReleaseSlider
     releaseSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
@@ -153,8 +133,6 @@ WaveNetWaveTableAudioProcessorEditor::~WaveNetWaveTableAudioProcessorEditor()
 {
 
     attackTree = nullptr;
-    decayTree = nullptr;
-    sustainTree = nullptr;
     releaseTree = nullptr;
     ampTree = nullptr;
     freqCutoffTree = nullptr;
@@ -185,8 +163,6 @@ void WaveNetWaveTableAudioProcessorEditor::resized()
     // >>> Sliders..this is the correct way to "sequentially" add objects by removing bounds from the original window
     auto sliderWidth = 60;
     attackSlider.setBounds(area.removeFromLeft(sliderWidth));
-    decaySlider.setBounds(area.removeFromLeft(sliderWidth));
-    sustainSlider.setBounds(area.removeFromLeft(sliderWidth));
     releaseSlider.setBounds(area.removeFromLeft(sliderWidth));
     
     auto remainArea = area;
@@ -194,6 +170,11 @@ void WaveNetWaveTableAudioProcessorEditor::resized()
     // >>> Add type button
     auto buttonWidth = 240;
     typeButton.setBounds((area.removeFromTop(headerHeight)).removeFromLeft(buttonWidth).reduced(20,0));
+    
+    area.removeFromTop(headerHeight);
+    // >>> Add smooth button
+    smoothButton.setBounds((area.removeFromTop(headerHeight)).removeFromLeft(buttonWidth).reduced(40,0));
+    
     // >>> Add the first combo box
     auto comboBoxHeight = 80;
     auto comboBoxWidth = 120;
@@ -238,12 +219,6 @@ void WaveNetWaveTableAudioProcessorEditor::sliderValueChanged(Slider* slider)
     else if (slider == &attackSlider) {
         processor.attackTime = attackSlider.getValue();
     }
-    else if (slider == &decaySlider) {
-        processor.decayTime = decaySlider.getValue();
-    }
-    else if (slider == &sustainSlider) {
-        processor.sustainTime = sustainSlider.getValue();
-    }
     else if (slider == &releaseSlider) {
         processor.releaseTime = releaseSlider.getValue();
     }
@@ -266,6 +241,7 @@ void WaveNetWaveTableAudioProcessorEditor::timerCallback()
         waveWindow.iWaveMode = *processor.tree.getRawParameterValue("wavetype");
         waveWindow.repaint();
         oscGUI.comboBoxChangeState = false;
+        oscGUI2.comboBoxChangeState = false;
     }
     
 }
@@ -282,6 +258,7 @@ void WaveNetWaveTableAudioProcessorEditor::buttonClicked(Button *button)
             waveWindow.repaint();
             typeButton.setColour(TextButton::buttonOnColourId, Colours::lightskyblue);
             processor.buttonState = true;
+            smoothButton.setVisible(true);
             oscGUI2.setVisible(true);
             interpolationSlider.setVisible(true);
             interpolationLabel.setVisible(true);
@@ -293,12 +270,27 @@ void WaveNetWaveTableAudioProcessorEditor::buttonClicked(Button *button)
             waveWindow.bIsWavenet = false;
             waveWindow.repaint();
             processor.buttonState = false;
+            smoothButton.setVisible(false);
             oscGUI2.setVisible(false);
-            
             interpolationSlider.setVisible(false);
             interpolationLabel.setVisible(false);
             
             
+        }
+    }
+    if (button == &smoothButton)
+    {
+        if (!processor.buttonState2)
+        {
+            smoothButton.setButtonText("Wave smoothing on");
+            processor.buttonState2 = true;
+            waveWindow.repaint();
+        }
+        else
+        {
+            smoothButton.setButtonText("Wave smoothing off");
+            processor.buttonState2 = false;
+            waveWindow.repaint();
         }
     }
     

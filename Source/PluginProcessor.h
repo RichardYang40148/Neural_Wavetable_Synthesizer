@@ -61,8 +61,6 @@ public:
     
     //==============================================================================
     float attackTime;
-    float decayTime;
-    float sustainTime;
     float releaseTime;
     float ampValue;
     float freqCutoff;
@@ -73,13 +71,13 @@ public:
     //==============================================================================
     float getVppm();
     bool buttonState = false;
+    bool buttonState2 = false;
 private:
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (WaveNetWaveTableAudioProcessor)
     // For Synthesizer
     Synthesiser mySynth;
     SynthVoice* myVoice;
-    maxiOsc testOsc;
     
     double lastSampleRate;
     

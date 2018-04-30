@@ -4,14 +4,14 @@
     SynthVoice.h
     Created: 18 Apr 2018 10:46:12pm
     Author:  Lamtharn Hantrakul
-
+    Edit by: Richard Yang
   ==============================================================================
 */
 
 #pragma once
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "SynthSound.h"
 #include "maximilian.h"
+#include "ADSR.h"
 
 class SynthVoice : public SynthesiserVoice
 {
@@ -22,28 +22,41 @@ public:
     }
     
     //===========================================
-    void getParam (float* amp, float* attack, float* decay, float* sustain, float* release)
+    void setParam (float* amp, float* attack, float* release)
     {
         // dereference the pointers
         masterAmp = *amp;
+        
+        // Set Attach and Release value. The Delay and Sustain value are currently fixed.
         env1.setAttack(double(*attack));
-        env1.setDecay(double(*decay));
-        env1.setSustain(double(*sustain));
+        env1.setSustain(1);
+        env1.setDecay(200);
         env1.setRelease(double(*release));
     }
-    void getInterpolationFile(float* interpolation)
+    void setInterpolationFile(float* interpolation)
     {
-        osc1.interpolationRead(float(*interpolation), int(iWaveCombination), bool(bInterpolationReversed));
+        osc1.interpolationRead(float(*interpolation), int(iWaveCombination), bool(bInterpolationReversed), bool(bSmooth));
     }
     
     //===========================================
     // For controlling the OSC type
-    void getOscType(float* selection)
+    void setOscType(float* selection)
     {
         theWave = *selection; //dereferenec the selection
         theMode = 0;
     }
-    /* Sloppy version of handling wave combination
+    //===========================================
+    // For controlling wave smoothing
+    void setSmooth(bool smooth)
+    {
+        bSmooth = smooth;
+    }
+    bool getSmooth()
+    {
+        return bSmooth;
+    }
+    /*handling wave combination
+     ===========================================
     sinsin     0
     sinsaw     3 1
     sintri     4 0
@@ -55,8 +68,10 @@ public:
     trisin     4 1
     trisaw     5 0
     tritri     2
+     ===========================================
     */
-    void getNeuralOscType(float* selection, float* selection2)
+    
+    void setNeuralOscType(float* selection, float* selection2)
     {
         if(*selection ==0)
         {
@@ -126,13 +141,13 @@ public:
             }
         }
         else{
-            return osc1.wavenetbuf(frequency, false);
+            return osc1.wavenetbuf(frequency);
         }
     }
     
     //===========================================
     // For controlling the Filter Cutoff
-    void getFilterCutoff(float* cutoff)
+    void setFilterCutoff(float* cutoff)
     {
         theCutoff = *cutoff; // dereference the cutoff
     }
@@ -198,10 +213,10 @@ private:
     
     int iWaveCombination = 0;  // wave type selection index
     bool bInterpolationReversed = false;  // wave mode selection index
-    
+    bool bSmooth = true;
     float theCutoff;  // LPF cutoff
     
     maxiOsc osc1;
-    maxiEnv env1;
+    ADSREnv env1;
     maxiFilter filter1;
 };
