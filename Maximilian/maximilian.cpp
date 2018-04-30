@@ -97,9 +97,10 @@ double maxiOsc::sinewave(double frequency) {
 
 //==============================================================================
 void maxiOsc::interpolationRead(float interpolation, int mode, bool reverse, bool smooth) {
-    if ((int)interpolation != prevInterpolation || mode != prevMode){
+    if ((int)interpolation != prevInterpolation || mode != prevMode || smooth != prevSmooth){
         prevInterpolation = (int)interpolation;
         prevMode = mode;
+        prevSmooth = smooth;
         string filefolder;
         string filename;
         int index = 0;
@@ -172,15 +173,14 @@ void maxiOsc::interpolationRead(float interpolation, int mode, bool reverse, boo
         {
             wavenetBuffer[i] = wavenetBuffer[i]-mean;
         }
-    }
-    
-    //smooth method: ramp the first/final 32 sample of the wavetable from 1 to sample 33/480 by using sin(pi/2).
-    if (smooth)
-    {
-        for (int i =1; i<33; i++)
+        //smooth method: ramp the first/final 32 sample of the wavetable from 1 to sample 33/480 by using sin(pi/2).
+        if (smooth)
         {
-            wavenetBuffer[i] = wavenetBuffer[33] * (-sineBuffer[i*8+128]+1)/2;
-            wavenetBuffer[514-i] = wavenetBuffer[512-33] * (-sineBuffer[i*8+128]+1)/2;
+            for (int i =1; i<33; i++)
+            {
+                wavenetBuffer[i] = wavenetBuffer[33] * (-sineBuffer[i*8+128]+1)/2;
+                wavenetBuffer[514-i] = wavenetBuffer[512-33] * (-sineBuffer[i*8+128]+1)/2;
+            }
         }
     }
     

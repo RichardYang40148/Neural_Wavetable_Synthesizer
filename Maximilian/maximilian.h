@@ -123,6 +123,7 @@ public:
     //==============================================================================
     int prevInterpolation = 101;
     int prevMode = 101;
+    bool prevSmooth = true;
     void interpolationLoad();
     void interpolationRead(float interpolation, int mode, bool reverse, bool smooth);
     double wavenetbuf(double frequency);

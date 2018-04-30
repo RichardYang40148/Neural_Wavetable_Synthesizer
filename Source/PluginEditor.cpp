@@ -26,7 +26,7 @@ WaveNetWaveTableAudioProcessorEditor::WaveNetWaveTableAudioProcessorEditor (Wave
     
     
     //Smooth button
-    smoothButton.setButtonText("Wave Smoothing");
+    smoothButton.setButtonText("Wave smoothing on");
     smoothButton.setClickingTogglesState(true);
     addAndMakeVisible(smoothButton);
     smoothButton.setVisible(false);
@@ -227,6 +227,7 @@ void WaveNetWaveTableAudioProcessorEditor::sliderValueChanged(Slider* slider)
     }
     else if (slider == &interpolationSlider) {
         processor.interpolation = interpolationSlider.getValue();
+        Time::waitForMillisecondCounter(Time::getMillisecondCounter() + 10);
         waveWindow.repaint();
     }
 }
@@ -255,10 +256,12 @@ void WaveNetWaveTableAudioProcessorEditor::buttonClicked(Button *button)
 
             typeButton.setButtonText("Neural Wavetable");
             waveWindow.bIsWavenet = true;
+            Time::waitForMillisecondCounter(Time::getMillisecondCounter() + 10);
             waveWindow.repaint();
             typeButton.setColour(TextButton::buttonOnColourId, Colours::lightskyblue);
             processor.buttonState = true;
             smoothButton.setVisible(true);
+            processor.buttonState2 = true;
             oscGUI2.setVisible(true);
             interpolationSlider.setVisible(true);
             interpolationLabel.setVisible(true);
@@ -268,9 +271,11 @@ void WaveNetWaveTableAudioProcessorEditor::buttonClicked(Button *button)
         {
             typeButton.setButtonText("Wavetable");
             waveWindow.bIsWavenet = false;
+            Time::waitForMillisecondCounter(Time::getMillisecondCounter() + 10);
             waveWindow.repaint();
             processor.buttonState = false;
             smoothButton.setVisible(false);
+            processor.buttonState2 = true;
             oscGUI2.setVisible(false);
             interpolationSlider.setVisible(false);
             interpolationLabel.setVisible(false);
@@ -284,12 +289,14 @@ void WaveNetWaveTableAudioProcessorEditor::buttonClicked(Button *button)
         {
             smoothButton.setButtonText("Wave smoothing on");
             processor.buttonState2 = true;
+            Time::waitForMillisecondCounter(Time::getMillisecondCounter() + 10);
             waveWindow.repaint();
         }
         else
         {
             smoothButton.setButtonText("Wave smoothing off");
             processor.buttonState2 = false;
+            Time::waitForMillisecondCounter(Time::getMillisecondCounter() + 10);
             waveWindow.repaint();
         }
     }

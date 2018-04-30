@@ -22,7 +22,6 @@ WaveNetWaveTableAudioProcessor::WaveNetWaveTableAudioProcessor()
                        .withOutput ("Output", AudioChannelSet::stereo(), true)
                      #endif
                        ),
-attackTime(0.1f),
 tree (*this, nullptr)
 #endif
 {
@@ -182,13 +181,6 @@ void WaveNetWaveTableAudioProcessor::processBlock (AudioBuffer<float>& buffer, M
         if ((myVoice = dynamic_cast<SynthVoice*>(mySynth.getVoice(v))))
         {
             
-            // toogle on/off wave smoothing
-            if (!buttonState2) {
-                myVoice->setSmooth(false);
-            }
-            else {
-                myVoice->setSmooth(true);
-            }
             // switch between normal and wavenet wavetable
             if (!buttonState) {
                 
@@ -200,6 +192,16 @@ void WaveNetWaveTableAudioProcessor::processBlock (AudioBuffer<float>& buffer, M
                 
             }
             
+            // toogle on/off wave smoothing
+            if (!buttonState2) {
+                myVoice->setSmooth(false);
+                myVoice->setInterpolationFile(tree.getRawParameterValue("interpolation"));
+            }
+            else {
+                
+                myVoice->setSmooth(true);
+                myVoice->setInterpolationFile(tree.getRawParameterValue("interpolation"));
+            }
             
             
             // Controls the Amp and ADSR

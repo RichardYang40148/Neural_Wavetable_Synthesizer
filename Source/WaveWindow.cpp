@@ -34,15 +34,8 @@ void WaveWindow::paint (Graphics& g)
 
     g.fillAll (Colours::darkgrey);   // clear the background
 
-//    g.setColour (Colours::grey);
-//    g.drawRect (getLocalBounds(), 1);   // draw an outline around the component
-//
-//    g.setColour (Colours::white);
-//    g.setFont (14.0f);
-//    g.drawText ("WaveWindow", getLocalBounds(),
-//                Justification::centred, true);   // draw some placeholder text
     
-    int waveTableLength = 512;
+    int waveTableLength = 514;
     if (bIsWavenet){
         for (int i = 1; i < waveTableLength-1; i++) {
             float x_pos = ((float)i / (float)waveTableLength) * getLocalBounds().getWidth();
