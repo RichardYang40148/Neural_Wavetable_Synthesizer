@@ -1,27 +1,27 @@
 /*
-  ==============================================================================
-
-    This file was auto-generated!
-
-    It contains the basic framework code for a JUCE plugin processor.
-
-  ==============================================================================
-*/
+ ==============================================================================
+ 
+ This file was auto-generated!
+ 
+ It contains the basic framework code for a JUCE plugin processor.
+ 
+ ==============================================================================
+ */
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
 //==============================================================================
-WaveNetWaveTableAudioProcessor::WaveNetWaveTableAudioProcessor()
+NeuralWaveTableAudioProcessor::NeuralWaveTableAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
-     : AudioProcessor (BusesProperties()
-                     #if ! JucePlugin_IsMidiEffect
-                      #if ! JucePlugin_IsSynth
-                       .withInput  ("Input",  AudioChannelSet::stereo(), true)
-                      #endif
-                       .withOutput ("Output", AudioChannelSet::stereo(), true)
-                     #endif
-                       ),
+: AudioProcessor (BusesProperties()
+#if ! JucePlugin_IsMidiEffect
+#if ! JucePlugin_IsSynth
+                  .withInput  ("Input",  AudioChannelSet::stereo(), true)
+#endif
+                  .withOutput ("Output", AudioChannelSet::stereo(), true)
+#endif
+                  ),
 tree (*this, nullptr)
 #endif
 {
@@ -62,75 +62,75 @@ tree (*this, nullptr)
     CPpm::createInstance(m_pCPpm);
 }
 
-WaveNetWaveTableAudioProcessor::~WaveNetWaveTableAudioProcessor()
+NeuralWaveTableAudioProcessor::~NeuralWaveTableAudioProcessor()
 {
     CPpm::destroyInstance(m_pCPpm);
 }
 
 //==============================================================================
-const String WaveNetWaveTableAudioProcessor::getName() const
+const String NeuralWaveTableAudioProcessor::getName() const
 {
     return JucePlugin_Name;
 }
 
-bool WaveNetWaveTableAudioProcessor::acceptsMidi() const
+bool NeuralWaveTableAudioProcessor::acceptsMidi() const
 {
-   #if JucePlugin_WantsMidiInput
+#if JucePlugin_WantsMidiInput
     return true;
-   #else
+#else
     return false;
-   #endif
+#endif
 }
 
-bool WaveNetWaveTableAudioProcessor::producesMidi() const
+bool NeuralWaveTableAudioProcessor::producesMidi() const
 {
-   #if JucePlugin_ProducesMidiOutput
+#if JucePlugin_ProducesMidiOutput
     return true;
-   #else
+#else
     return false;
-   #endif
+#endif
 }
 
-bool WaveNetWaveTableAudioProcessor::isMidiEffect() const
+bool NeuralWaveTableAudioProcessor::isMidiEffect() const
 {
-   #if JucePlugin_IsMidiEffect
+#if JucePlugin_IsMidiEffect
     return true;
-   #else
+#else
     return false;
-   #endif
+#endif
 }
 
-double WaveNetWaveTableAudioProcessor::getTailLengthSeconds() const
+double NeuralWaveTableAudioProcessor::getTailLengthSeconds() const
 {
     return 0.0;
 }
 
-int WaveNetWaveTableAudioProcessor::getNumPrograms()
+int NeuralWaveTableAudioProcessor::getNumPrograms()
 {
     return 1;   // NB: some hosts don't cope very well if you tell them there are 0 programs,
-                // so this should be at least 1, even if you're not really implementing programs.
+    // so this should be at least 1, even if you're not really implementing programs.
 }
 
-int WaveNetWaveTableAudioProcessor::getCurrentProgram()
+int NeuralWaveTableAudioProcessor::getCurrentProgram()
 {
     return 0;
 }
 
-void WaveNetWaveTableAudioProcessor::setCurrentProgram (int index)
+void NeuralWaveTableAudioProcessor::setCurrentProgram (int index)
 {
 }
 
-const String WaveNetWaveTableAudioProcessor::getProgramName (int index)
+const String NeuralWaveTableAudioProcessor::getProgramName (int index)
 {
     return {};
 }
 
-void WaveNetWaveTableAudioProcessor::changeProgramName (int index, const String& newName)
+void NeuralWaveTableAudioProcessor::changeProgramName (int index, const String& newName)
 {
 }
 
 //==============================================================================
-void WaveNetWaveTableAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
+void NeuralWaveTableAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
     ignoreUnused(samplesPerBlock);
     lastSampleRate = sampleRate;
@@ -144,44 +144,44 @@ void WaveNetWaveTableAudioProcessor::prepareToPlay (double sampleRate, int sampl
     m_pfOutputVppm = new float [m_iTotalNumInputChannels];
 }
 
-void WaveNetWaveTableAudioProcessor::releaseResources()
+void NeuralWaveTableAudioProcessor::releaseResources()
 {
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
 }
 
 #ifndef JucePlugin_PreferredChannelConfigurations
-bool WaveNetWaveTableAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
+bool NeuralWaveTableAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
 {
-  #if JucePlugin_IsMidiEffect
+#if JucePlugin_IsMidiEffect
     ignoreUnused (layouts);
     return true;
-  #else
+#else
     // This is the place where you check if the layout is supported.
     // In this template code we only support mono or stereo.
     if (layouts.getMainOutputChannelSet() != AudioChannelSet::mono()
-     && layouts.getMainOutputChannelSet() != AudioChannelSet::stereo())
+        && layouts.getMainOutputChannelSet() != AudioChannelSet::stereo())
         return false;
-
+    
     // This checks if the input layout matches the output layout
-   #if ! JucePlugin_IsSynth
+#if ! JucePlugin_IsSynth
     if (layouts.getMainOutputChannelSet() != layouts.getMainInputChannelSet())
         return false;
-   #endif
-
+#endif
+    
     return true;
-  #endif
+#endif
 }
 #endif
 
-void WaveNetWaveTableAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer& midiMessages)
+void NeuralWaveTableAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer& midiMessages)
 {
     // how to send tree value information from slider to processor is from tutorial https://www.youtube.com/watch?v=PaKXRm6RZF4&index=25&list=PLLgJJsrdwhPxa6-02-CeHW8ocwSwl2jnu
     for (int v = 0; v < mySynth.getNumVoices(); v++) {
         if ((myVoice = dynamic_cast<SynthVoice*>(mySynth.getVoice(v))))
         {
             
-            // switch between normal and wavenet wavetable
+            // switch between normal and Neural wavetable
             if (!buttonState) {
                 
                 myVoice->setOscType(tree.getRawParameterValue("wavetype"));
@@ -221,39 +221,39 @@ void WaveNetWaveTableAudioProcessor::processBlock (AudioBuffer<float>& buffer, M
     mySynth.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
     // Process the audio buffer to color the meter
     const float **readPointers = buffer.getArrayOfReadPointers();
-
+    
     m_pCPpm->process(readPointers, m_pfOutputVppm, buffer.getNumSamples());
     
     
 }
 
 //==============================================================================
-bool WaveNetWaveTableAudioProcessor::hasEditor() const
+bool NeuralWaveTableAudioProcessor::hasEditor() const
 {
     return true; // (change this to false if you choose to not supply an editor)
 }
 
-AudioProcessorEditor* WaveNetWaveTableAudioProcessor::createEditor()
+AudioProcessorEditor* NeuralWaveTableAudioProcessor::createEditor()
 {
-    return new WaveNetWaveTableAudioProcessorEditor (*this);
+    return new NeuralWaveTableAudioProcessorEditor (*this);
 }
 
 //==============================================================================
-void WaveNetWaveTableAudioProcessor::getStateInformation (MemoryBlock& destData)
+void NeuralWaveTableAudioProcessor::getStateInformation (MemoryBlock& destData)
 {
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
 }
 
-void WaveNetWaveTableAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
+void NeuralWaveTableAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
 }
 
 //==============================================================================
-float WaveNetWaveTableAudioProcessor::getVppm()
+float NeuralWaveTableAudioProcessor::getVppm()
 {
     // Output mean of Vppm across channels
     float sum = 0.0f;
@@ -267,5 +267,5 @@ float WaveNetWaveTableAudioProcessor::getVppm()
 // This creates new instances of the plugin..
 AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
-    return new WaveNetWaveTableAudioProcessor();
+    return new NeuralWaveTableAudioProcessor();
 }

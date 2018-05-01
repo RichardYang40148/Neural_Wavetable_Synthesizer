@@ -1,20 +1,20 @@
 /*
-  ==============================================================================
-
-    Oscillator.cpp
-    Created: 21 Apr 2018 10:21:32am
-    Author:  Lamtharn Hantrakul
-
-  ==============================================================================
-*/
+ ==============================================================================
+ 
+ Oscillator.cpp
+ Created: 21 Apr 2018 10:21:32am
+ Author:  Lamtharn Hantrakul
+ 
+ ==============================================================================
+ */
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "Oscillator.h"
 
 //==============================================================================
-Oscillator::Oscillator( WaveNetWaveTableAudioProcessor& p):
+Oscillator::Oscillator( NeuralWaveTableAudioProcessor& p):
 processor(p)
-{   
+{
     oscMenu.addItem("Sine", 1);
     oscMenu.addItem("Saw", 2);
     oscMenu.addItem("Tri", 3);

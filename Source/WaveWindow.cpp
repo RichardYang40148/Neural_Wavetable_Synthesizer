@@ -36,7 +36,7 @@ void WaveWindow::paint (Graphics& g)
 
     
     int waveTableLength = 514;
-    if (bIsWavenet){
+    if (bIsNeural){
         for (int i = 1; i < waveTableLength-1; i++) {
             float x_pos = ((float)i / (float)waveTableLength) * getLocalBounds().getWidth();
             float y_pos = getLocalBounds().getHeight() * ((wavenetBuffer[i] + 1)/2);

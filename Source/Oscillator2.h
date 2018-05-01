@@ -16,13 +16,13 @@
 
 //==============================================================================
 /*
-*/
+ */
 class Oscillator2    : public Component, public ComboBox::Listener
 {
 public:
-    Oscillator2(WaveNetWaveTableAudioProcessor&);
+    Oscillator2(NeuralWaveTableAudioProcessor&);
     ~Oscillator2();
-
+    
     void paint (Graphics&) override;
     void resized() override;
     
@@ -31,8 +31,8 @@ public:
 private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
-    WaveNetWaveTableAudioProcessor& processor;
-
+    NeuralWaveTableAudioProcessor& processor;
+    
     ComboBox oscMenu;
     
     ScopedPointer<AudioProcessorValueTreeState::ComboBoxAttachment> waveSelection;

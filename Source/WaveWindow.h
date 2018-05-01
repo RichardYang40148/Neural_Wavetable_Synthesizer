@@ -24,7 +24,7 @@ public:
 
     void paint (Graphics&) override;
     void resized() override;
-    bool bIsWavenet = false;
+    bool bIsNeural = false;
     int  iWaveMode = 0;
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (WaveWindow)

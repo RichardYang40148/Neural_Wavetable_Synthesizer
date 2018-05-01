@@ -12,7 +12,7 @@
 #include "Envelope.h"
 
 //==============================================================================
-Envelope::Envelope(WaveNetWaveTableAudioProcessor& p):
+Envelope::Envelope(NeuralWaveTableAudioProcessor& p):
 processor(p)
 {
     // In your constructor, you should add any child components, and

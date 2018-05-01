@@ -1,12 +1,12 @@
 /*
-  ==============================================================================
-
-    This file was auto-generated!
-
-    It contains the basic framework code for a JUCE plugin editor.
-
-  ==============================================================================
-*/
+ ==============================================================================
+ 
+ This file was auto-generated!
+ 
+ It contains the basic framework code for a JUCE plugin editor.
+ 
+ ==============================================================================
+ */
 
 #pragma once
 
@@ -19,13 +19,13 @@
 
 //==============================================================================
 /**
-*/
-class WaveNetWaveTableAudioProcessorEditor  : public AudioProcessorEditor, public Slider::Listener,  public Timer, public TextButton::Listener
+ */
+class NeuralWaveTableAudioProcessorEditor  : public AudioProcessorEditor, public Slider::Listener,  public Timer, public TextButton::Listener
 {
 public:
-    WaveNetWaveTableAudioProcessorEditor (WaveNetWaveTableAudioProcessor&);
-    ~WaveNetWaveTableAudioProcessorEditor();
-
+    NeuralWaveTableAudioProcessorEditor (NeuralWaveTableAudioProcessor&);
+    ~NeuralWaveTableAudioProcessorEditor();
+    
     //==============================================================================
     void paint (Graphics&) override;
     void resized() override;
@@ -37,7 +37,7 @@ public:
 private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
-    WaveNetWaveTableAudioProcessor& processor;
+    NeuralWaveTableAudioProcessor& processor;
     
     // For the dropdown box
     Oscillator oscGUI;
@@ -79,5 +79,5 @@ private:
     int plotDelay = 10;
     void timerCallback() override;
     
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (WaveNetWaveTableAudioProcessorEditor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (NeuralWaveTableAudioProcessorEditor)
 };

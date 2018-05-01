@@ -1,12 +1,12 @@
 /*
-  ==============================================================================
-
-    Oscillator.h
-    Created: 21 Apr 2018 10:21:32am
-    Author:  Lamtharn Hantrakul
-
-  ==============================================================================
-*/
+ ==============================================================================
+ 
+ Oscillator.h
+ Created: 21 Apr 2018 10:21:32am
+ Author:  Lamtharn Hantrakul
+ 
+ ==============================================================================
+ */
 
 #pragma once
 
@@ -15,13 +15,13 @@
 
 //==============================================================================
 /*
-*/
+ */
 class Oscillator    : public Component, public ComboBox::Listener
 {
 public:
-    Oscillator(WaveNetWaveTableAudioProcessor&);
+    Oscillator(NeuralWaveTableAudioProcessor&);
     ~Oscillator();
-
+    
     void paint (Graphics&) override;
     void resized() override;
     
@@ -30,8 +30,8 @@ public:
 private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
-    WaveNetWaveTableAudioProcessor& processor;
-
+    NeuralWaveTableAudioProcessor& processor;
+    
     ComboBox oscMenu;
     
     ScopedPointer<AudioProcessorValueTreeState::ComboBoxAttachment> waveSelection;

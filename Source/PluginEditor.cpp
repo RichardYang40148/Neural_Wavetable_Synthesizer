@@ -1,18 +1,18 @@
 /*
-  ==============================================================================
-
-    This file was auto-generated!
-
-    It contains the basic framework code for a JUCE plugin editor.
-
-  ==============================================================================
-*/
+ ==============================================================================
+ 
+ This file was auto-generated!
+ 
+ It contains the basic framework code for a JUCE plugin editor.
+ 
+ ==============================================================================
+ */
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 //==============================================================================
-WaveNetWaveTableAudioProcessorEditor::WaveNetWaveTableAudioProcessorEditor (WaveNetWaveTableAudioProcessor& p)
-    : AudioProcessorEditor (&p), processor (p), oscGUI(p), oscGUI2(p) // give the processor instance to oscGUI
+NeuralWaveTableAudioProcessorEditor::NeuralWaveTableAudioProcessorEditor (NeuralWaveTableAudioProcessor& p)
+: AudioProcessorEditor (&p), processor (p), oscGUI(p), oscGUI2(p) // give the processor instance to oscGUI
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
@@ -110,7 +110,7 @@ WaveNetWaveTableAudioProcessorEditor::WaveNetWaveTableAudioProcessorEditor (Wave
     interpolationSlider.setVisible(false);
     
     interpolationTree = new AudioProcessorValueTreeState::SliderAttachment (processor.tree, "interpolation", interpolationSlider);  // the correct way to interface the slider in editor with processor.
-
+    
     addAndMakeVisible(&interpolationLabel);
     interpolationLabel.setVisible(false);
     interpolationLabel.setJustificationType(Justification::centredTop);
@@ -121,7 +121,7 @@ WaveNetWaveTableAudioProcessorEditor::WaveNetWaveTableAudioProcessorEditor (Wave
     
     // Change look and feel of all sliders
     getLookAndFeel().setColour(Slider::thumbColourId, Colours::deeppink);
-    getLookAndFeel().setColour(Slider::trackColourId, Colours::lightskyblue);    
+    getLookAndFeel().setColour(Slider::trackColourId, Colours::lightskyblue);
     // Ppm Meter
     addAndMakeVisible(&Meter);
     startTimer(10);  // start the timer to tick every 10ms
@@ -130,9 +130,9 @@ WaveNetWaveTableAudioProcessorEditor::WaveNetWaveTableAudioProcessorEditor (Wave
     addAndMakeVisible(&waveWindow);
 }
 
-WaveNetWaveTableAudioProcessorEditor::~WaveNetWaveTableAudioProcessorEditor()
+NeuralWaveTableAudioProcessorEditor::~NeuralWaveTableAudioProcessorEditor()
 {
-
+    
     attackTree = nullptr;
     releaseTree = nullptr;
     ampTree = nullptr;
@@ -141,16 +141,16 @@ WaveNetWaveTableAudioProcessorEditor::~WaveNetWaveTableAudioProcessorEditor()
 }
 
 //==============================================================================
-void WaveNetWaveTableAudioProcessorEditor::paint (Graphics& g)
+void NeuralWaveTableAudioProcessorEditor::paint (Graphics& g)
 {
     // (Our component is opaque, so we must completely fill the background with a solid colour)
     g.fillAll (getLookAndFeel().findColour (ResizableWindow::backgroundColourId));
     g.setColour (Colours::white);
     g.setFont (15.0f);
-    g.drawFittedText ("WaveNet WaveTable Synth by Hanoi Hantrakul x Richard Yang", getLocalBounds(), Justification::bottom, 1);
+    g.drawFittedText ("Neural WaveTable Synth by Hanoi Hantrakul x Richard Yang", getLocalBounds(), Justification::bottom, 1);
 }
 
-void WaveNetWaveTableAudioProcessorEditor::resized()
+void NeuralWaveTableAudioProcessorEditor::resized()
 {
     // Define a box area size, then sequentially remove spaces from it
     auto area = getLocalBounds();
@@ -209,7 +209,7 @@ void WaveNetWaveTableAudioProcessorEditor::resized()
     
     // >>> Add smooth button
     auto smoothButtonWidth = 240;
-
+    
     smoothButton.setBounds((subArea1.removeFromTop(headerHeight)).removeFromLeft(smoothButtonWidth).reduced(60,0));
     
     // >>> Peak Meter
@@ -222,7 +222,7 @@ void WaveNetWaveTableAudioProcessorEditor::resized()
 }
 
 //==============================================================================
-void WaveNetWaveTableAudioProcessorEditor::sliderValueChanged(Slider* slider)
+void NeuralWaveTableAudioProcessorEditor::sliderValueChanged(Slider* slider)
 {
     // `switch` statements do not work on pointer comparisons
     if (slider == &ampSlider) {
@@ -245,7 +245,7 @@ void WaveNetWaveTableAudioProcessorEditor::sliderValueChanged(Slider* slider)
 }
 
 //==============================================================================
-void WaveNetWaveTableAudioProcessorEditor::timerCallback()
+void NeuralWaveTableAudioProcessorEditor::timerCallback()
 {
     //DBG(processor.getVppm());
     Meter.setValue(processor.getVppm());
@@ -259,15 +259,15 @@ void WaveNetWaveTableAudioProcessorEditor::timerCallback()
     
 }
 
-void WaveNetWaveTableAudioProcessorEditor::buttonClicked(Button *button)
+void NeuralWaveTableAudioProcessorEditor::buttonClicked(Button *button)
 {
     if (button == &typeButton)
     {
         if (!processor.buttonState)
         {
-
+            
             typeButton.setButtonText("Neural Wavetable");
-            waveWindow.bIsWavenet = true;
+            waveWindow.bIsNeural = true;
             Time::waitForMillisecondCounter(Time::getMillisecondCounter() + plotDelay);
             waveWindow.repaint();
             typeButton.setColour(TextButton::buttonOnColourId, Colours::lightskyblue);
@@ -283,7 +283,7 @@ void WaveNetWaveTableAudioProcessorEditor::buttonClicked(Button *button)
         else
         {
             typeButton.setButtonText("Normal Wavetable");
-            waveWindow.bIsWavenet = false;
+            waveWindow.bIsNeural = false;
             Time::waitForMillisecondCounter(Time::getMillisecondCounter() + plotDelay);
             waveWindow.repaint();
             processor.buttonState = false;
@@ -291,7 +291,7 @@ void WaveNetWaveTableAudioProcessorEditor::buttonClicked(Button *button)
             processor.buttonState2 = true;
             oscGUI.setBounds(oscX+60,oscY,oscW,oscH);
             oscGUI2.setVisible(false);
-            interpolationSlider.setVisible(false); 
+            interpolationSlider.setVisible(false);
             interpolationLabel.setVisible(false);
             
             
