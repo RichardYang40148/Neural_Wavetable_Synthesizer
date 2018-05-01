@@ -315,13 +315,13 @@
  #define JucePlugin_Enable_IAA             0
 #endif
 #ifndef  JucePlugin_Name
- #define JucePlugin_Name                   "WaveNetWaveTable"
+ #define JucePlugin_Name                   "NeuralWavetable"
 #endif
 #ifndef  JucePlugin_Desc
- #define JucePlugin_Desc                   "WaveNetWaveTable"
+ #define JucePlugin_Desc                   "NeuralWavetable"
 #endif
 #ifndef  JucePlugin_Manufacturer
- #define JucePlugin_Manufacturer           "yourcompany"
+ #define JucePlugin_Manufacturer           "Georgia Tech Center for Music Technology"
 #endif
 #ifndef  JucePlugin_ManufacturerWebsite
  #define JucePlugin_ManufacturerWebsite    ""
@@ -375,16 +375,16 @@
  #define JucePlugin_AUSubType              JucePlugin_PluginCode
 #endif
 #ifndef  JucePlugin_AUExportPrefix
- #define JucePlugin_AUExportPrefix         WaveNetWaveTableAU
+ #define JucePlugin_AUExportPrefix         NeuralWavetableAU
 #endif
 #ifndef  JucePlugin_AUExportPrefixQuoted
- #define JucePlugin_AUExportPrefixQuoted   "WaveNetWaveTableAU"
+ #define JucePlugin_AUExportPrefixQuoted   "NeuralWavetableAU"
 #endif
 #ifndef  JucePlugin_AUManufacturerCode
  #define JucePlugin_AUManufacturerCode     JucePlugin_ManufacturerCode
 #endif
 #ifndef  JucePlugin_CFBundleIdentifier
- #define JucePlugin_CFBundleIdentifier     com.yourcompany.WaveNetWaveTable
+ #define JucePlugin_CFBundleIdentifier     com.yourcompany.NeuralWavetable
 #endif
 #ifndef  JucePlugin_RTASCategory
  #define JucePlugin_RTASCategory           0
@@ -402,7 +402,7 @@
  #define JucePlugin_RTASDisableMultiMono   0
 #endif
 #ifndef  JucePlugin_AAXIdentifier
- #define JucePlugin_AAXIdentifier          com.yourcompany.WaveNetWaveTable
+ #define JucePlugin_AAXIdentifier          com.yourcompany.NeuralWavetable
 #endif
 #ifndef  JucePlugin_AAXManufacturerCode
  #define JucePlugin_AAXManufacturerCode    JucePlugin_ManufacturerCode
@@ -426,5 +426,5 @@
  #define JucePlugin_IAASubType             JucePlugin_PluginCode
 #endif
 #ifndef  JucePlugin_IAAName
- #define JucePlugin_IAAName                "yourcompany: WaveNetWaveTable"
+ #define JucePlugin_IAAName                "Georgia Tech Center for Music Technology: NeuralWavetable"
 #endif
