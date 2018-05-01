@@ -39,13 +39,13 @@ tree (*this, nullptr)
     tree.createAndAddParameter(("amp"), "Amp", "Amp", ampParam, 0.5f, nullptr, nullptr);
     tree.createAndAddParameter(("cutoff"), "Cutoff", "Cutoff", freqCutoffParam, 1.0f, nullptr, nullptr);
     
-    tree.createAndAddParameter(("interpolation"), "Interpolation", "Interpolation", interpolationParam, 1.0f, nullptr, nullptr);
+    tree.createAndAddParameter(("interpolation"), "Interpolation", "Interpolation", interpolationParam, 50.0f, nullptr, nullptr);
     
     // For the drop down combobox
     NormalisableRange<float> wavetypeParam(0,3); // Index in the box is 1-3, but value passing in tree is from 0-2
     NormalisableRange<float> wavetype2Param(0,3); // Index in the box is 1-3, but value passing in tree is from 0-2
     tree.createAndAddParameter("wavetype", "WaveType", "Wavetype", wavetypeParam, 0, nullptr, nullptr);
-    tree.createAndAddParameter("wavetype2", "WaveType2", "Wavetype2", wavetype2Param, 0, nullptr, nullptr);
+    tree.createAndAddParameter("wavetype2", "WaveType2", "Wavetype2", wavetype2Param, 1, nullptr, nullptr);
     
     
     mySynth.clearVoices();
