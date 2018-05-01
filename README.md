@@ -18,7 +18,7 @@ We use WaveNet to encode some basic wavetables like a Sin, Triangle and Sawtooth
 Download the VST on this [link](https://drive.google.com/drive/folders/1dmlnyH6X3tHiEGdCnNhbYUAC69F1mCKB?usp=sharing).
 
 <img src="./assets/AbletonNeuralWavetableSynth.png" height="250">
-
+Need help on installing a VST plugins for Ableton? [link](https://help.ableton.com/hc/en-us/articles/209068929-Recommendations-for-using-AU-and-VST-plug-ins-on-Mac)
 ### Build Instructions (for the techie folks...)
 
 1. Download the latest version of JUCE from https://shop.juce.com/get-juce
