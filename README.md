@@ -19,7 +19,7 @@ Download the VST on this [link](https://drive.google.com/drive/folders/1dmlnyH6X
 
 <img src="./assets/AbletonNeuralWavetableSynth.png" height="250">
 
-Tutorial for installing VST plugins for Ableton on Mac[link](https://help.ableton.com/hc/en-us/articles/209068929-Recommendations-for-using-AU-and-VST-plug-ins-on-Mac) Windows[link](https://help.ableton.com/hc/en-us/articles/209071729-Using-VST-plug-ins-on-Windows).
+Tutorial for installing VST plugins for Ableton on [Mac](https://help.ableton.com/hc/en-us/articles/209068929-Recommendations-for-using-AU-and-VST-plug-ins-on-Mac) [Windows](https://help.ableton.com/hc/en-us/articles/209071729-Using-VST-plug-ins-on-Windows).
 
 
 
