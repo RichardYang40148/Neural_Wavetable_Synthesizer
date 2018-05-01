@@ -1,6 +1,6 @@
 # Neural WaveTable Synth
 
-<img src="NeuralWavetableSynth.png" height="380">
+<img src="./assets/NeuralWavetableSynth.png" height="380">
 
 ### Description
 A wavetable synthesizer VST that uses WaveNet to interpolate between different wavetables. We include two formats of this synthesizer, a plug-and-play VST you can download and play RIGHT NOW in your DAW! For the more technically inclined, we also include all our source python and c++ code using tensorflow and JUCE for you to experiment and build upon. Happy music-making!
@@ -17,7 +17,7 @@ We use WaveNet to encode some basic wavetables like a Sin, Triangle and Sawtooth
 ### DOWNLOAD THE VST!
 Download the VST on this [link](https://drive.google.com/drive/folders/1dmlnyH6X3tHiEGdCnNhbYUAC69F1mCKB?usp=sharing).
 
-<img src="AbletonNeuralWavetableSynth.png" height="250">
+<img src="./assets/AbletonNeuralWavetableSynth.png" height="250">
 
 ### Build Instructions (for the techie folks...)
 
