@@ -177,11 +177,6 @@ void WaveNetWaveTableAudioProcessorEditor::resized()
     releaseSlider.setBounds(area.removeFromLeft(sliderWidth));
     subArea1.removeFromLeft(sliderWidth*2);
     
-<<<<<<< HEAD
-=======
-    
-    
->>>>>>> origin/master
     
     // >>> Add the first combo box
     auto comboBoxHeight = 80;
@@ -214,11 +209,8 @@ void WaveNetWaveTableAudioProcessorEditor::resized()
     
     // >>> Add smooth button
     auto smoothButtonWidth = 240;
-<<<<<<< HEAD
+
     smoothButton.setBounds((subArea1.removeFromTop(headerHeight)).removeFromLeft(smoothButtonWidth).reduced(60,0));
-=======
-    smoothButton.setBounds((subArea1.removeFromTop(headerHeight)).removeFromLeft(smoothButtonWidth).reduced(40,0));
->>>>>>> origin/master
     
     // >>> Peak Meter
     auto peakMeterWidth = 80;
@@ -309,23 +301,14 @@ void WaveNetWaveTableAudioProcessorEditor::buttonClicked(Button *button)
     {
         if (!processor.buttonState2)
         {
-<<<<<<< HEAD
             
             smoothButton.setButtonText("smoothing on");
-=======
-            smoothButton.setButtonText("smoothing on");
-            smoothButton.setColour(TextButton::buttonOnColourId, Colours::lightskyblue);
->>>>>>> origin/master
             processor.buttonState2 = true;
             Time::waitForMillisecondCounter(Time::getMillisecondCounter() + plotDelay);
             waveWindow.repaint();
         }
         else
         {
-<<<<<<< HEAD
-            
-=======
->>>>>>> origin/master
             smoothButton.setButtonText("smoothing off");
             processor.buttonState2 = false;
             Time::waitForMillisecondCounter(Time::getMillisecondCounter() + plotDelay);
