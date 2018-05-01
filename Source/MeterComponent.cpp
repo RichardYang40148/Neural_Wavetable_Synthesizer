@@ -28,13 +28,6 @@ MeterComponent::~MeterComponent()
 void MeterComponent::paint (Graphics& g)
 {
     auto area = getLocalBounds();
-    auto textHeight = 20;
-    
-    // Set text
-    g.setColour (Colours::white);
-    g.setFont (15.0f);
-    g.drawFittedText ("Meter", area.removeFromBottom(textHeight), Justification::bottom, 1);
-    
     // Draw our vertical bar by defining two points
     Point<float> Corner1(0, area.getHeight()); // Bottom of the meter
     Point<float> Corner2(area.getWidth(), area.getHeight() - fMeterHeight); // Top of the meter
