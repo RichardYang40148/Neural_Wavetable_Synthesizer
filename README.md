@@ -11,8 +11,10 @@ If you listen and produce electronic music, you've already heard wavetable synth
 ### What is WaveNet?
 WaveNet is the future of sound! It is a neural network architecture that has revolutionized many aspects of audio, including groundbreaking [speech synthesis](https://deepmind.com/blog/wavenet-generative-model-raw-audio/) and new kinds of [synthesis](https://nsynthsuper.withgoogle.com/) techniques.
 
-### What is a WaveNet WaveTable?
+### What is a Neural WaveTable?
 We use WaveNet to encode some basic wavetables like a Sin, Triangle and Sawtooth - all with length 512 - into WaveNet's latent space. Each of these sounds are now represented by a real-valued "embedding vector" of length 16. This vector encapsulates sonic and timbral characteristics of the original wavetable. We then interpolate between these wavetables, not by adding or subtracting them directly, but by mixing their latent vectors. For example, 30% sin and 70% saw means "find the embedding that is 30% away from the vector of sin and 70% away from the vector of saw". We then use the newly interpolated vector to decode back into the original wavetable of length 512. To make the decoded wavetables play nice, we normalize all wavetables and also include an option to "smooth" the wave.
+
+<img src="./assets/EmbeddingDiagram.png" height="380">
 
 ### DOWNLOAD THE VST!
 Download the VST on this [link](https://drive.google.com/drive/folders/1dmlnyH6X3tHiEGdCnNhbYUAC69F1mCKB?usp=sharing).
@@ -20,9 +22,6 @@ Download the VST on this [link](https://drive.google.com/drive/folders/1dmlnyH6X
 <img src="./assets/AbletonNeuralWavetableSynth.png" height="250">
 
 Tutorial for installing VST plugins for Ableton on [Mac](https://help.ableton.com/hc/en-us/articles/209068929-Recommendations-for-using-AU-and-VST-plug-ins-on-Mac) /[Windows](https://help.ableton.com/hc/en-us/articles/209071729-Using-VST-plug-ins-on-Windows).
-
-
-
 
 ### Build Instructions (for the techie folks...)
 
