@@ -1,6 +1,6 @@
 # Neural WaveTable Synth
 
-<img src="AbletonNeuralWavetableSynth.png" height="380">
+<img src="NeuralWavetableSynth.png" height="380">
 
 ### Description
 A wavetable synthesizer VST that uses WaveNet to interpolate between different wavetables. We include two formats of this synthesizer, a plug-and-play VST you can download and play RIGHT NOW in your DAW! For the more technically inclined, we also include all our source python and c++ code using tensorflow and JUCE for you to experiment and build upon. Happy music-making!
@@ -12,9 +12,14 @@ If you listen and produce electronic music, you've already heard wavetable synth
 WaveNet is the future of sound! It is a neural network architecture that has revolutionized many aspects of audio, including groundbreaking [speech synthesis](https://deepmind.com/blog/wavenet-generative-model-raw-audio/) and new kinds of [synthesis](https://nsynthsuper.withgoogle.com/) techniques.
 
 ### What is a WaveNet WaveTable?
-We use WaveNet to encode some basic wavetables like a Sin, Triangle and Sawtooth - all with length 512 - into WaveNet's latent space. Each of these sounds are now represented by a real-valued "embedding vector" of length 16. This vector encapsulates sonic and timbral characteristics of the original wavetables. We then interpolate between these wavetables, not by adding or subtracting them directly, but by mixing their latent vectors. We then use the newly interpolated vector to decode back into the original wavetable of length 512. To make the decoded wavetables play nice, we normalize all wavetables and also include an option to "smooth" the wave.
+We use WaveNet to encode some basic wavetables like a Sin, Triangle and Sawtooth - all with length 512 - into WaveNet's latent space. Each of these sounds are now represented by a real-valued "embedding vector" of length 16. This vector encapsulates sonic and timbral characteristics of the original wavetable. We then interpolate between these wavetables, not by adding or subtracting them directly, but by mixing their latent vectors. For example, 30% sin and 70% saw means "find the embedding that is 30% away from the vector of sin and 70% away from the vector of saw". We then use the newly interpolated vector to decode back into the original wavetable of length 512. To make the decoded wavetables play nice, we normalize all wavetables and also include an option to "smooth" the wave.
 
-### Build Instructions
+### DOWNLOAD THE VST!
+<img src="NeuralWavetableSynth.png" height="250">
+
+Download the VST on this [link](https://drive.google.com/drive/folders/1dmlnyH6X3tHiEGdCnNhbYUAC69F1mCKB?usp=sharing).
+
+### Build Instructions (for the techie folks...)
 
 1. Download the latest version of JUCE from https://shop.juce.com/get-juce
 2. Clone our git repository `git clone https://github.com/RichardYang40148/Neural_Wavetable_Synthesizer.git`
