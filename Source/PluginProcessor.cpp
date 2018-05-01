@@ -51,7 +51,7 @@ tree (*this, nullptr)
     mySynth.clearVoices();
     // >>> For Synthesizer
     // Add synth voices (max number of voices)
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < 16; i++) {
         mySynth.addVoice(new SynthVoice());
     }
     
@@ -202,6 +202,7 @@ void WaveNetWaveTableAudioProcessor::processBlock (AudioBuffer<float>& buffer, M
                 myVoice->setSmooth(true);
                 myVoice->setInterpolationFile(tree.getRawParameterValue("interpolation"));
             }
+            
             
             
             // Controls the Amp and ADSR

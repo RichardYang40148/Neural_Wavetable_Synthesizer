@@ -69,12 +69,14 @@ private:
     TextButton typeButton;
     // Button for smooth switch (switch on to activate smoothing, off to use original wavetable)
     TextButton smoothButton;
+    // Button for Normalization switch (switch on to activate Normalization, off to use original wavetable)
+    TextButton normalizeButton;
     // For PPM meter
     MeterComponent Meter;
     
     // For WaveWindow
     WaveWindow waveWindow;
-    int plotDelay = 50;
+    int plotDelay = 10;
     void timerCallback() override;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (WaveNetWaveTableAudioProcessorEditor)

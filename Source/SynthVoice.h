@@ -52,6 +52,7 @@ public:
     {
         bSmooth = smooth;
     }
+
     bool getSmooth()
     {
         return bSmooth;
@@ -160,12 +161,29 @@ public:
     }
     
     //===========================================
-    void startNote(int midiNoteNumber, float velocity, SynthesiserSound *sound, int currentPitchWheelPosition)
+    // Convert the current note midi position and offset caused by pitch wheel into the correct frequency
+    double getCurrentMidiNoteInHertz(int midiNoteNumber, int PitchWheelPosition) {
+        // Pitch wheel outputs a 14 bit value. Scale this value to range -1.0 to 1.0
+        midiNoteOffset = (PitchWheelPosition/16383.0f) * 2.0f - 1.0f;
+        return convertMidiNoteToHertz((double)midiNoteNumber + midiNoteOffset);
+    }
+    
+    // Convert current midi note to frequency based on a tuning frequency
+    double convertMidiNoteToHertz (const double noteNumber, const double frequencyOfA=440.0)
+    {
+        return frequencyOfA * std::pow (2.0, (noteNumber - 69) / 12.0);
+    }
+    
+    //===========================================
+    void startNote(int midiNoteNumber, float velocity, SynthesiserSound *sound, int currPitchWheelPosition)
     {
         env1.trigger = 1;
         level = velocity;  // velocity is already normalized
-        frequency = MidiMessage::getMidiNoteInHertz(midiNoteNumber);
+        //frequency = MidiMessage::getMidiNoteInHertz(midiNoteNumber + midiNoteOffset);
+        currMidiNote = midiNoteNumber;
+        frequency = getCurrentMidiNoteInHertz(currMidiNote, currPitchWheelPosition);
     }
+
     
     //===========================================
     void stopNote (float velocity, bool allowTailOff)
@@ -182,7 +200,7 @@ public:
     //===========================================
     void pitchWheelMoved (int newPitchWheelValue)
     {
-        
+        frequency = getCurrentMidiNoteInHertz(currMidiNote, newPitchWheelValue);
     }
     
     //===========================================
@@ -211,6 +229,9 @@ private:
     double masterAmp;
     int theWave;  // wave type selection index
     int theMode;  // wave mode selection index
+    
+    double midiNoteOffset = 0.0;
+    int currMidiNote = 0;
     
     int iWaveCombination = 0;  // wave type selection index
     bool bInterpolationReversed = false;  // wave mode selection index
