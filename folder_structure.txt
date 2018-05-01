@@ -1,0 +1,37 @@
+Folder Structure: Lamtharn (Hanoi) Hantrakul & Richard Yang
+
+`prerender` : contains `prerender.cpp` and `prerender.h`. These are the prerendered wavetables from WaveNet saved as arrays
+
+`Maximilian` : A stripped down version of the Maximilian library. They have some sweet filter implementations like Sallen Key etc.
+
+`JuceLibraryCode` : contains the JUCE framework .cpp and .h files added by default
+
+`Source` : contains the bulk of our VST code
+|
+|_`ADSR.h` and `ADSR.cpp` : ADSR implementation
+|
+|_`Envelope.h` and `Envelope.cpp` : Sliders for controlling Envelope
+|
+|_`ErrorDef.h` : Alexander Lerch's Error codes
+|
+|_`MeterComponent.h` and `MeterComponent.h` : Program Peak Meter Visual elements
+|
+|_`Oscillator.h` and `Oscillator.cpp` : ComboBox for selecting first wavetable
+|
+|_`Oscillator2.h` and `Oscillator2.cpp` : ComboBox for selecting second wavetable
+|
+|_`PluginEditor.h` and `PluginEditor.cpp` : Juce Framework File for designing the GUI
+|
+|_`PluginProcessor.h` and `PluginProcessor.cpp` : Juce Framework File for audio processing
+|
+|_`Ppm.h` and Ppm.cpp` : Program Peak Meter implementation 
+|
+|_`SynthSound.h` :  JUCE Framework file for handling multipule synth voices. 
+|
+|_`SynthVoice.h` : JUCE Framework file for rendering audio waveforms for synth sound
+|
+|_`WaveWindow.h` and `WaveWindow.cpp` : GUI for rendering waveforms visually
+
+
+
+
