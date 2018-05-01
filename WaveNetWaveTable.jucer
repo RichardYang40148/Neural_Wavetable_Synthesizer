@@ -25,7 +25,7 @@
             file="Source/PluginEditor.cpp"/>
       <FILE id="gTssqo" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
       <FILE id="RKVvY5" name="SynthVoice.h" compile="0" resource="0" file="Source/SynthVoice.h"/>
-      <FILE id="jvbWiq" name="SynthSound.h" compile="0" resource="0" file="Source/SynthSound.h"/>
+      <FILE id="yk3Zy0" name="SynthSound.h" compile="0" resource="0" file="Source/SynthSound.h"/>
       <FILE id="qkGddF" name="ErrorDef.h" compile="0" resource="0" file="Source/ErrorDef.h"/>
       <FILE id="QAleyW" name="MeterComponent.cpp" compile="1" resource="0"
             file="Source/MeterComponent.cpp"/>

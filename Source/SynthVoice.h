@@ -10,6 +10,7 @@
 
 #pragma once
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "SynthSound.h"
 #include "maximilian.h"
 #include "ADSR.h"
 
@@ -215,7 +216,7 @@ private:
     bool bInterpolationReversed = false;  // wave mode selection index
     bool bSmooth = true;
     float theCutoff;  // LPF cutoff
-    
+
     maxiOsc osc1;
     ADSREnv env1;
     maxiFilter filter1;

@@ -36,7 +36,7 @@ tree (*this, nullptr)
     // The tree object is used to communicate values between the `PluginEditor` and the `PluginProcessor`
     tree.createAndAddParameter(("attack"), "Attack", "Attack", attackParam, 1.0f, nullptr, nullptr);
     tree.createAndAddParameter(("release"), "Release", "Release", releaseParam, 1.0f, nullptr, nullptr);
-    tree.createAndAddParameter(("amp"), "Amp", "Amp", ampParam, 0.8f, nullptr, nullptr);
+    tree.createAndAddParameter(("amp"), "Amp", "Amp", ampParam, 0.5f, nullptr, nullptr);
     tree.createAndAddParameter(("cutoff"), "Cutoff", "Cutoff", freqCutoffParam, 1.0f, nullptr, nullptr);
     
     tree.createAndAddParameter(("interpolation"), "Interpolation", "Interpolation", interpolationParam, 1.0f, nullptr, nullptr);
@@ -44,8 +44,8 @@ tree (*this, nullptr)
     // For the drop down combobox
     NormalisableRange<float> wavetypeParam(0,3); // Index in the box is 1-3, but value passing in tree is from 0-2
     NormalisableRange<float> wavetype2Param(0,3); // Index in the box is 1-3, but value passing in tree is from 0-2
-    tree.createAndAddParameter("wavetype", "WaveType", "Wavetype", wavetypeParam, 1, nullptr, nullptr);
-    tree.createAndAddParameter("wavetype2", "WaveType2", "Wavetype2", wavetype2Param, 1, nullptr, nullptr);
+    tree.createAndAddParameter("wavetype", "WaveType", "Wavetype", wavetypeParam, 0, nullptr, nullptr);
+    tree.createAndAddParameter("wavetype2", "WaveType2", "Wavetype2", wavetype2Param, 0, nullptr, nullptr);
     
     
     mySynth.clearVoices();

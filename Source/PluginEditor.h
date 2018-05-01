@@ -42,27 +42,24 @@ private:
     // For the dropdown box
     Oscillator oscGUI;
     Oscillator2 oscGUI2;
-    
+    int oscX;
+    int oscY;
+    int oscW;
+    int oscH;
     // Create Tree objects: this is JUCE's way of communicating values between `PluginEditor` and `PluginProcessor`
     ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> attackTree;
-    //ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> decayTree;
-    //ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> sustainTree;
     ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> releaseTree;
     ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> ampTree;
     ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> freqCutoffTree;
     ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> interpolationTree;
     
     Slider attackSlider;
-    //Slider decaySlider;
-    //Slider sustainSlider;
     Slider releaseSlider;
     Slider ampSlider;
     Slider freqCutoffSlider;
     Slider interpolationSlider;
     
     Label attackLabel;
-    //Label decayLabel;
-    //Label sustainLabel;
     Label releaseLabel;
     Label ampLabel;
     Label freqCutoffLabel;
@@ -77,7 +74,7 @@ private:
     
     // For WaveWindow
     WaveWindow waveWindow;
-    
+    int plotDelay = 50;
     void timerCallback() override;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (WaveNetWaveTableAudioProcessorEditor)

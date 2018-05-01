@@ -16,7 +16,7 @@ WaveNetWaveTableAudioProcessorEditor::WaveNetWaveTableAudioProcessorEditor (Wave
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
-    setSize (680, 300);
+    setSize (650, 350);
     
     //Type button
     typeButton.setButtonText("Wavetable");
@@ -52,7 +52,7 @@ WaveNetWaveTableAudioProcessorEditor::WaveNetWaveTableAudioProcessorEditor (Wave
     addAndMakeVisible(&attackLabel);
     attackLabel.setText("Attack", dontSendNotification);
     attackLabel.attachToComponent(&attackSlider, false);
-    
+    attackLabel.setJustificationType(Justification::centred);
     
     // ReleaseSlider
     releaseSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
@@ -68,7 +68,7 @@ WaveNetWaveTableAudioProcessorEditor::WaveNetWaveTableAudioProcessorEditor (Wave
     addAndMakeVisible(&releaseLabel);
     releaseLabel.setText("Release", dontSendNotification);
     releaseLabel.attachToComponent(&releaseSlider, false);
-    
+    releaseLabel.setJustificationType(Justification::centred);
     // AmpSlider
     ampSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
     ampSlider.setRange(0.0f,1.0f); // 0.0 - 1.0 master amp
@@ -83,7 +83,7 @@ WaveNetWaveTableAudioProcessorEditor::WaveNetWaveTableAudioProcessorEditor (Wave
     addAndMakeVisible(&ampLabel);
     ampLabel.setText("Amp", dontSendNotification);
     ampLabel.attachToComponent(&ampSlider, false);
-    
+    ampLabel.setJustificationType(Justification::centred);
     // FreqSlider
     freqCutoffSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
     freqCutoffSlider.setRange(0.0f,1.0f); // Maximillian Lopass takes 0.0 - 1.0 as input parameter
@@ -97,7 +97,7 @@ WaveNetWaveTableAudioProcessorEditor::WaveNetWaveTableAudioProcessorEditor (Wave
     addAndMakeVisible(&freqCutoffLabel);
     freqCutoffLabel.setText("Cutoff", dontSendNotification);
     freqCutoffLabel.attachToComponent(&freqCutoffSlider, false);
-    
+    freqCutoffLabel.setJustificationType(Justification::centred);
     // InterpolationSlider
     
     interpolationSlider.setSliderStyle(Slider::SliderStyle::LinearHorizontal);
@@ -158,34 +158,46 @@ void WaveNetWaveTableAudioProcessorEditor::resized()
     area.removeFromTop    (headerHeight);
     area.removeFromBottom (footerHeight);
     
-    auto pluginArea = area;
     
-    // >>> Sliders..this is the correct way to "sequentially" add objects by removing bounds from the original window
-    auto sliderWidth = 60;
-    attackSlider.setBounds(area.removeFromLeft(sliderWidth));
-    releaseSlider.setBounds(area.removeFromLeft(sliderWidth));
-    
-    auto remainArea = area;
     
     // >>> Add type button
-    auto buttonWidth = 240;
-    typeButton.setBounds((area.removeFromTop(headerHeight)).removeFromLeft(buttonWidth).reduced(20,0));
+    auto typeButtonWidth = 650;
+    auto typeButtonHeight = 30;
+    typeButton.setBounds((area.removeFromTop(typeButtonHeight)).removeFromLeft(typeButtonWidth).reduced(20,0));
+    
     
     area.removeFromTop(headerHeight);
+    auto subArea1 = area;
+    area.removeFromTop(headerHeight);
+    auto subArea2 = area;
+    // >>> Sliders..this is the correct way to "sequentially" add objects by removing bounds from the original window
+    auto sliderWidth = 80;
+    attackSlider.setBounds(area.removeFromLeft(sliderWidth));
+    releaseSlider.setBounds(area.removeFromLeft(sliderWidth));
+    subArea1.removeFromLeft(sliderWidth*2);
+    
+    
     // >>> Add smooth button
-    smoothButton.setBounds((area.removeFromTop(headerHeight)).removeFromLeft(buttonWidth).reduced(40,0));
+    auto smoothButtonWidth = 240;
+    smoothButton.setBounds((subArea1.removeFromTop(headerHeight)).removeFromLeft(smoothButtonWidth).reduced(40,0));
     
     // >>> Add the first combo box
     auto comboBoxHeight = 80;
     auto comboBoxWidth = 120;
+    
     oscGUI.setBounds((area.removeFromTop(comboBoxHeight)).removeFromLeft(comboBoxWidth).reduced(0, 20));
+    oscX = oscGUI.getX();
+    oscY = oscGUI.getY();
+    oscW = oscGUI.getWidth();
+    oscH = oscGUI.getHeight();
     
     // >>> Add the second combo box base on position of the first one
     auto oscPos = oscGUI.getBounds();
-    auto oscXPos = oscGUI.getX();
-    oscPos.setX(oscXPos+comboBoxWidth);
+    oscPos.setX(oscX+comboBoxWidth);
     oscGUI2.setBounds(oscPos);
     
+    // >> paint oscGUI again to the initial location
+    oscGUI.setBounds(oscX+60,oscY,oscW,oscH);
     
     // >>> Add the interpolation slider
     auto sliderHeightHorizon = 20;
@@ -195,18 +207,18 @@ void WaveNetWaveTableAudioProcessorEditor::resized()
     
     // >>> Add wave window
     auto windowHeight = 250;
-    auto waveWindowPos = (area.removeFromTop(windowHeight)).removeFromLeft(sliderWidthHorizon).reduced(20,20);
+    auto waveWindowPos = (area.removeFromTop(windowHeight)).removeFromLeft(sliderWidthHorizon).reduced(20,10);
     waveWindow.setBounds(waveWindowPos); //`reduced()` puts a border around the window
     
     
     
     // >>> Peak Meter
     auto peakMeterWidth = 80;
-    Meter.setBounds(pluginArea.removeFromRight(peakMeterWidth).reduced(20,0));
+    Meter.setBounds(subArea2.removeFromRight(peakMeterWidth).reduced(20,0));
     
     // >>> Amp and cutoff Sliders
-    freqCutoffSlider.setBounds(pluginArea.removeFromRight(sliderWidth));
-    ampSlider.setBounds(pluginArea.removeFromRight(sliderWidth));
+    freqCutoffSlider.setBounds(subArea2.removeFromRight(sliderWidth));
+    ampSlider.setBounds(subArea2.removeFromRight(sliderWidth));
 }
 
 //==============================================================================
@@ -227,7 +239,7 @@ void WaveNetWaveTableAudioProcessorEditor::sliderValueChanged(Slider* slider)
     }
     else if (slider == &interpolationSlider) {
         processor.interpolation = interpolationSlider.getValue();
-        Time::waitForMillisecondCounter(Time::getMillisecondCounter() + 10);
+        Time::waitForMillisecondCounter(Time::getMillisecondCounter() + plotDelay);
         waveWindow.repaint();
     }
 }
@@ -256,12 +268,13 @@ void WaveNetWaveTableAudioProcessorEditor::buttonClicked(Button *button)
 
             typeButton.setButtonText("Neural Wavetable");
             waveWindow.bIsWavenet = true;
-            Time::waitForMillisecondCounter(Time::getMillisecondCounter() + 10);
+            Time::waitForMillisecondCounter(Time::getMillisecondCounter() + plotDelay);
             waveWindow.repaint();
             typeButton.setColour(TextButton::buttonOnColourId, Colours::lightskyblue);
             processor.buttonState = true;
             smoothButton.setVisible(true);
             processor.buttonState2 = true;
+            oscGUI.setBounds(oscX,oscY,oscW,oscH);
             oscGUI2.setVisible(true);
             interpolationSlider.setVisible(true);
             interpolationLabel.setVisible(true);
@@ -271,11 +284,12 @@ void WaveNetWaveTableAudioProcessorEditor::buttonClicked(Button *button)
         {
             typeButton.setButtonText("Wavetable");
             waveWindow.bIsWavenet = false;
-            Time::waitForMillisecondCounter(Time::getMillisecondCounter() + 10);
+            Time::waitForMillisecondCounter(Time::getMillisecondCounter() + plotDelay);
             waveWindow.repaint();
             processor.buttonState = false;
             smoothButton.setVisible(false);
             processor.buttonState2 = true;
+            oscGUI.setBounds(oscX+60,oscY,oscW,oscH);
             oscGUI2.setVisible(false);
             interpolationSlider.setVisible(false);
             interpolationLabel.setVisible(false);
@@ -289,14 +303,14 @@ void WaveNetWaveTableAudioProcessorEditor::buttonClicked(Button *button)
         {
             smoothButton.setButtonText("Wave smoothing on");
             processor.buttonState2 = true;
-            Time::waitForMillisecondCounter(Time::getMillisecondCounter() + 10);
+            Time::waitForMillisecondCounter(Time::getMillisecondCounter() + plotDelay);
             waveWindow.repaint();
         }
         else
         {
             smoothButton.setButtonText("Wave smoothing off");
             processor.buttonState2 = false;
-            Time::waitForMillisecondCounter(Time::getMillisecondCounter() + 10);
+            Time::waitForMillisecondCounter(Time::getMillisecondCounter() + plotDelay);
             waveWindow.repaint();
         }
     }
