@@ -5,6 +5,8 @@
 ### Description
 A wavetable synthesizer VST that uses WaveNet to interpolate between different wavetables. We include two formats of this synthesizer, a plug-and-play VST you can download and play RIGHT NOW in your DAW! For the more technically inclined, we also include all our source python and c++ code using tensorflow and JUCE for you to experiment and build upon. Happy music-making!
 
+[![Video link](https://github.com/RichardYang40148/Neural_Wavetable_Synthesizer/blob/master/assets/Youtube.png)](https://www.youtube.com/watch?v=k6eqcmWx6uY&feature=youtu.be)
+
 ### What is Wavetable synthesis?
 If you listen and produce electronic music, you've already heard wavetable synthesis in action. A popular wavetable synthesizer used by many electronic artists is [Serum](https://splice.com/plugins/15493-serum-vst-au-by-xfer-records?utm_source=adwords&utm_medium=paid-search&utm_campaign=acquisition&utm_content=plugins). The new Ableton Live 10 also features a new Wavetable synthesizer called...you guessed it: [Wavetable](https://www.ableton.com/en/packs/wavetable/). The synthesizer works by using a variety of "wavetables" that define one period of the waveform. This reference wavetable is then "read" at different speeds to produce the desired pitch of sound. Check out this [YouTube video](https://www.youtube.com/watch?v=k81hoZODOP0) for an explanation!
 
