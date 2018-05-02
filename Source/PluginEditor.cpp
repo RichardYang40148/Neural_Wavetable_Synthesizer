@@ -268,24 +268,24 @@ void NeuralWaveTableAudioProcessorEditor::buttonClicked(Button *button)
             
             typeButton.setButtonText("Neural Wavetable");
             waveWindow.bIsNeural = true;
-            Time::waitForMillisecondCounter(Time::getMillisecondCounter() + plotDelay);
-            waveWindow.repaint();
             typeButton.setColour(TextButton::buttonOnColourId, Colours::lightskyblue);
             processor.buttonState = true;
             smoothButton.setVisible(true);
+            smoothButton.setButtonText("smoothing on");
+            processor.buttonState2 = true;
             processor.buttonState2 = true;
             oscGUI.setBounds(oscX,oscY,oscW,oscH);
             oscGUI2.setVisible(true);
             interpolationSlider.setVisible(true);
             interpolationLabel.setVisible(true);
+            Time::waitForMillisecondCounter(Time::getMillisecondCounter() + plotDelay);
+            waveWindow.repaint();
             
         }
         else
         {
             typeButton.setButtonText("Normal Wavetable");
             waveWindow.bIsNeural = false;
-            Time::waitForMillisecondCounter(Time::getMillisecondCounter() + plotDelay);
-            waveWindow.repaint();
             processor.buttonState = false;
             smoothButton.setVisible(false);
             processor.buttonState2 = true;
@@ -293,6 +293,8 @@ void NeuralWaveTableAudioProcessorEditor::buttonClicked(Button *button)
             oscGUI2.setVisible(false);
             interpolationSlider.setVisible(false);
             interpolationLabel.setVisible(false);
+            Time::waitForMillisecondCounter(Time::getMillisecondCounter() + plotDelay);
+            waveWindow.repaint();
             
             
         }
