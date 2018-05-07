@@ -16,7 +16,7 @@ WaveNet is the future of sound! It is a neural network architecture that has rev
 ### What is a Neural WaveTable?
 We use WaveNet to encode some basic wavetables like a Sin, Triangle and Sawtooth - all with length 512 - into WaveNet's latent space. Each of these sounds are now represented by a real-valued "embedding vector" of length 16. This vector encapsulates sonic and timbral characteristics of the original wavetable. We then interpolate between these wavetables, not by adding or subtracting them directly, but by mixing their latent vectors. For example, 30% sin and 70% saw means "find the embedding that is 30% away from the vector of sin and 70% away from the vector of saw". We then use the newly interpolated vector to decode back into the original wavetable of length 512. To make the decoded wavetables play nice, we normalize all wavetables and also include an option to "smooth" the wave.
 
-<img src="./assets/EmbeddingDiagram.png" height="340">
+<img src="./assets/EmbeddingDiagram.png" max-height="340">
 
 ### DOWNLOAD THE VST!
 Download the VST on this [link](https://drive.google.com/drive/folders/1dmlnyH6X3tHiEGdCnNhbYUAC69F1mCKB?usp=sharing).
