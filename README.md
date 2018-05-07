@@ -21,7 +21,7 @@ We use WaveNet to encode some basic wavetables like a Sin, Triangle and Sawtooth
 ### DOWNLOAD THE VST!
 Download the VST on this [link](https://drive.google.com/drive/folders/1dmlnyH6X3tHiEGdCnNhbYUAC69F1mCKB?usp=sharing).
 
-<img src="./assets/AbletonNeuralWavetableSynth.png" height="250">
+<img src="./assets/AbletonNeuralWavetableSynth.png" max-height="250">
 
 Tutorial for installing VST plugins for Ableton on [Mac](https://help.ableton.com/hc/en-us/articles/209068929-Recommendations-for-using-AU-and-VST-plug-ins-on-Mac) /[Windows](https://help.ableton.com/hc/en-us/articles/209071729-Using-VST-plug-ins-on-Windows).
 
