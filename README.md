@@ -1,6 +1,6 @@
 # Neural WaveTable Synth
 
-<img src="./assets/NeuralWavetableSynth.png" height="380">
+<img src="./assets/NeuralWavetableSynth.png" max-height="380">
 
 ### Description
 A wavetable synthesizer VST that uses WaveNet to interpolate between different wavetables. We include two formats of this synthesizer, a plug-and-play VST you can download and play RIGHT NOW in your DAW! For the more technically inclined, we also include all our source python and c++ code using tensorflow and JUCE for you to experiment and build upon. Happy music-making!
