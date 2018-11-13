@@ -1,4 +1,4 @@
-# Neural WaveTable Synth
+# Neural Wavetable: a playable wavetable synthesizer using neural networks
 
 <img src="./assets/NeuralWavetableSynth.png" max-height="380">
 
