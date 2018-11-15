@@ -1,6 +1,9 @@
 # Neural Wavetable: a playable wavetable synthesizer using neural networks
 
+Present in NIPS 2018 Workshop on Machine Learning for Creativity and Design. [Paper link](https://arxiv.org/pdf/1811.05550.pdf)
+
 <img src="./assets/NeuralWavetableSynth.png" max-height="380">
+
 
 ### Description
 A wavetable synthesizer VST that uses WaveNet to interpolate between different wavetables. We include two formats of this synthesizer, a plug-and-play VST you can download and play RIGHT NOW in your DAW! For the more technically inclined, we also include all our source python and c++ code using tensorflow and JUCE for you to experiment and build upon. Happy music-making!
