@@ -47,11 +47,11 @@ private:
     int oscW;
     int oscH;
     // Create Tree objects: this is JUCE's way of communicating values between `PluginEditor` and `PluginProcessor`
-    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> attackTree;
-    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> releaseTree;
-    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> ampTree;
-    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> freqCutoffTree;
-    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> interpolationTree;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> attackTree;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> releaseTree;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> ampTree;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> freqCutoffTree;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> interpolationTree;
     
     Slider attackSlider;
     Slider releaseSlider;

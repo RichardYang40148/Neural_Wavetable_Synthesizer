@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT name="NeuralWavetable" projectType="audioplug" buildStandalone="1"
-              jucerVersion="5.3.1" pluginFormats="buildVST,buildStandalone"
-              pluginCharacteristicsValue="pluginProducesMidiOut,pluginWantsMidiIn"
-              headerPath="../../Maximilian&#10;../../prerender" buildVST="1"
-              buildVST3="0" buildAU="0" buildAUv3="0" buildRTAS="0" buildAAX="0"
-              enableIAA="0" pluginManufacturer="Georgia Tech Center for Music Technology">
+              pluginFormats="buildAU,buildStandalone,buildVST3" pluginCharacteristicsValue="pluginProducesMidiOut,pluginWantsMidiIn"
+              headerPath="../../Maximilian&#10;../../prerender" buildVST="0"
+              buildVST3="1" buildAU="1" buildAUv3="0" buildRTAS="0" buildAAX="0"
+              enableIAA="0" pluginManufacturer="Georgia Tech Center for Music Technology"
+              id="X84cJZ" displaySplashScreen="1" jucerFormatVersion="1">
   <MAINGROUP id="Z0KCue" name="NeuralWavetable">
     <GROUP id="{9B5BBDAA-5C0C-DBB6-453E-F3DCAC161757}" name="Source">
       <GROUP id="{FAA1319D-6303-9F45-3B60-2F36EDCB377C}" name="prerender">
@@ -72,25 +72,6 @@
         <MODULEPATH id="juce_audio_utils" path="../../others/JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
-    <CLION targetFolder="Builds/CLion">
-      <MODULEPATHS>
-        <MODULEPATH id="juce_video" path="../../others/JUCE/modules"/>
-        <MODULEPATH id="juce_opengl" path="../../others/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="../../others/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="../../others/JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="../../others/JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="../../others/JUCE/modules"/>
-        <MODULEPATH id="juce_data_structures" path="../../others/JUCE/modules"/>
-        <MODULEPATH id="juce_cryptography" path="../../others/JUCE/modules"/>
-        <MODULEPATH id="juce_core" path="../../others/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_utils" path="../../others/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="../../others/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="../../others/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="../../others/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="../../others/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_basics" path="../../others/JUCE/modules"/>
-      </MODULEPATHS>
-    </CLION>
     <VS2017 targetFolder="Builds/VisualStudio2017">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug"/>

@@ -35,7 +35,7 @@ private:
     
     ComboBox oscMenu;
     
-    ScopedPointer<AudioProcessorValueTreeState::ComboBoxAttachment> waveSelection;
+    std::unique_ptr<AudioProcessorValueTreeState::ComboBoxAttachment> waveSelection;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Oscillator2)
     

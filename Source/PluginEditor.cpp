@@ -49,7 +49,7 @@ NeuralWaveTableAudioProcessorEditor::NeuralWaveTableAudioProcessorEditor (Neural
     attackSlider.addListener(this);
     addAndMakeVisible(&attackSlider);
     
-    attackTree = new AudioProcessorValueTreeState::SliderAttachment (processor.tree, "attack", attackSlider);  // the correct way to interface the slider in editor with processor.
+    attackTree = std::make_unique <AudioProcessorValueTreeState::SliderAttachment> (processor.tree, "attack", attackSlider);  // the correct way to interface the slider in editor with processor.
     
     addAndMakeVisible(&attackLabel);
     attackLabel.setText("Attack", dontSendNotification);
@@ -64,7 +64,7 @@ NeuralWaveTableAudioProcessorEditor::NeuralWaveTableAudioProcessorEditor (Neural
     releaseSlider.addListener(this);
     addAndMakeVisible(&releaseSlider);
     
-    releaseTree = new AudioProcessorValueTreeState::SliderAttachment (processor.tree, "release", releaseSlider);  // the correct way to interface the slider in editor with processor.
+    releaseTree = std::make_unique <AudioProcessorValueTreeState::SliderAttachment> (processor.tree, "release", releaseSlider);  // the correct way to interface the slider in editor with processor.
     
     addAndMakeVisible(&releaseLabel);
     releaseLabel.setText("Release", dontSendNotification);
@@ -79,7 +79,7 @@ NeuralWaveTableAudioProcessorEditor::NeuralWaveTableAudioProcessorEditor (Neural
     ampSlider.addListener(this);
     addAndMakeVisible(&ampSlider);
     
-    ampTree = new AudioProcessorValueTreeState::SliderAttachment (processor.tree, "amp", ampSlider);  // the correct way to interface the slider in editor with processor.
+    ampTree = std::make_unique <AudioProcessorValueTreeState::SliderAttachment> (processor.tree, "amp", ampSlider);  // the correct way to interface the slider in editor with processor.
     
     addAndMakeVisible(&ampLabel);
     ampLabel.setText("Amp", dontSendNotification);
@@ -93,7 +93,7 @@ NeuralWaveTableAudioProcessorEditor::NeuralWaveTableAudioProcessorEditor (Neural
     freqCutoffSlider.addListener(this);
     addAndMakeVisible(&freqCutoffSlider);
     
-    freqCutoffTree = new AudioProcessorValueTreeState::SliderAttachment (processor.tree, "cutoff", freqCutoffSlider);  // the correct way to interface the slider in editor with processor.
+    freqCutoffTree = std::make_unique <AudioProcessorValueTreeState::SliderAttachment> (processor.tree, "cutoff", freqCutoffSlider);  // the correct way to interface the slider in editor with processor.
     
     addAndMakeVisible(&freqCutoffLabel);
     freqCutoffLabel.setText("Cutoff", dontSendNotification);
@@ -109,7 +109,7 @@ NeuralWaveTableAudioProcessorEditor::NeuralWaveTableAudioProcessorEditor (Neural
     addAndMakeVisible(&interpolationSlider);
     interpolationSlider.setVisible(false);
     
-    interpolationTree = new AudioProcessorValueTreeState::SliderAttachment (processor.tree, "interpolation", interpolationSlider);  // the correct way to interface the slider in editor with processor.
+    interpolationTree = std::make_unique <AudioProcessorValueTreeState::SliderAttachment> (processor.tree, "interpolation", interpolationSlider);  // the correct way to interface the slider in editor with processor.
     
     addAndMakeVisible(&interpolationLabel);
     interpolationLabel.setVisible(false);

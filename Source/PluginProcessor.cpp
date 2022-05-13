@@ -22,32 +22,9 @@ NeuralWaveTableAudioProcessor::NeuralWaveTableAudioProcessor()
                   .withOutput ("Output", AudioChannelSet::stereo(), true)
 #endif
                   ),
-tree (*this, nullptr)
+tree (*this, nullptr, "Parameters", createParameters())
 #endif
 {
-    // >>> For Updating slider changes... a DAW requires everything to be normalized from 0.0 - 1.0
-    NormalisableRange<float> attackParam(1.0f, 5000.0f);
-    NormalisableRange<float> releaseParam(1.0f, 5000.0f);
-    NormalisableRange<float> ampParam(0.0f, 1.0f);
-    NormalisableRange<float> freqCutoffParam(0.0f, 1.0f);  // I am using a Maximillian lopass object which takes 0.0 - 1.0 as cutoff
-    
-    NormalisableRange<float> interpolationParam(0, 100);
-    
-    // The tree object is used to communicate values between the `PluginEditor` and the `PluginProcessor`
-    tree.createAndAddParameter(("attack"), "Attack", "Attack", attackParam, 1.0f, nullptr, nullptr);
-    tree.createAndAddParameter(("release"), "Release", "Release", releaseParam, 1.0f, nullptr, nullptr);
-    tree.createAndAddParameter(("amp"), "Amp", "Amp", ampParam, 0.5f, nullptr, nullptr);
-    tree.createAndAddParameter(("cutoff"), "Cutoff", "Cutoff", freqCutoffParam, 1.0f, nullptr, nullptr);
-    
-    tree.createAndAddParameter(("interpolation"), "Interpolation", "Interpolation", interpolationParam, 50.0f, nullptr, nullptr);
-    
-    // For the drop down combobox
-    NormalisableRange<float> wavetypeParam(0,3); // Index in the box is 1-3, but value passing in tree is from 0-2
-    NormalisableRange<float> wavetype2Param(0,3); // Index in the box is 1-3, but value passing in tree is from 0-2
-    tree.createAndAddParameter("wavetype", "WaveType", "Wavetype", wavetypeParam, 0, nullptr, nullptr);
-    tree.createAndAddParameter("wavetype2", "WaveType2", "Wavetype2", wavetype2Param, 1, nullptr, nullptr);
-    
-    
     mySynth.clearVoices();
     // >>> For Synthesizer
     // Add synth voices (max number of voices)
@@ -67,7 +44,47 @@ NeuralWaveTableAudioProcessor::~NeuralWaveTableAudioProcessor()
     CPpm::destroyInstance(m_pCPpm);
 }
 
-//==============================================================================
+//=============================================================================================
+AudioProcessorValueTreeState::ParameterLayout NeuralWaveTableAudioProcessor::createParameters()
+{
+    std::vector<std::unique_ptr<RangedAudioParameter>> parameters;
+    
+    // >>> For Updating slider changes... a DAW requires everything to be normalized from 0.0 - 1.0
+    NormalisableRange<float> attackParam(1.0f, 5000.0f);
+    NormalisableRange<float> releaseParam(1.0f, 5000.0f);
+    NormalisableRange<float> ampParam(0.0f, 1.0f);
+    NormalisableRange<float> freqCutoffParam(0.0f, 1.0f);  // I am using a Maximillian lopass object which takes 0.0 - 1.0 as cutoff
+    
+    NormalisableRange<float> interpolationParam(0, 100);
+    
+    // Alias for APVTS Parameter type
+    using Parameter = juce::AudioProcessorValueTreeState::Parameter;
+    
+    // The tree object is used to communicate values between the `PluginEditor` and the `PluginProcessor`
+    parameters.push_back(std::make_unique<Parameter>(("attack"), "Attack", "Attack", attackParam, 1.0f, nullptr, nullptr));
+    
+    parameters.push_back(std::make_unique<Parameter>(("release"), "Release", "Release", releaseParam, 1.0f, nullptr, nullptr));
+    
+    parameters.push_back(std::make_unique<Parameter>(("amp"), "Amp", "Amp", ampParam, 0.5f, nullptr, nullptr));
+    
+    parameters.push_back(std::make_unique<Parameter>(("cutoff"), "Cutoff", "Cutoff", freqCutoffParam, 1.0f, nullptr, nullptr));
+    
+    parameters.push_back(std::make_unique<Parameter>(("interpolation"), "Interpolation", "Interpolation", interpolationParam, 50.0f, nullptr, nullptr));
+    
+    // For the drop down combobox
+    NormalisableRange<float> wavetypeParam(0,3); // Index in the box is 1-3, but value passing in tree is from 0-2
+    NormalisableRange<float> wavetype2Param(0,3); // Index in the box is 1-3, but value passing in tree is from 0-2
+    
+    parameters.push_back(std::make_unique<Parameter>("wavetype", "WaveType", "Wavetype", wavetypeParam, 0, nullptr, nullptr));
+    
+    parameters.push_back(std::make_unique<Parameter>("wavetype2", "WaveType2", "Wavetype2", wavetype2Param, 1, nullptr, nullptr));
+
+    return { parameters.begin(), parameters.end() };
+
+}
+
+//=============================================================================================
+
 const String NeuralWaveTableAudioProcessor::getName() const
 {
     return JucePlugin_Name;
@@ -183,7 +200,6 @@ void NeuralWaveTableAudioProcessor::processBlock (AudioBuffer<float>& buffer, Mi
             
             // switch between normal and Neural wavetable
             if (!buttonState) {
-                
                 myVoice->setOscType(tree.getRawParameterValue("wavetype"));
             }
             else{

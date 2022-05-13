@@ -21,7 +21,7 @@ processor(p)
     oscMenu.setJustificationType(Justification::centred);
     addAndMakeVisible(&oscMenu);
     oscMenu.addListener(this);
-    waveSelection = new AudioProcessorValueTreeState::ComboBoxAttachment(processor.tree, "wavetype", oscMenu);
+    waveSelection = std::make_unique<AudioProcessorValueTreeState::ComboBoxAttachment>(processor.tree, "wavetype", oscMenu);
 }
 
 Oscillator::~Oscillator()
