@@ -23,7 +23,7 @@ public:
     }
     
     //===========================================
-    void setParam (float* amp, float* attack, float* release)
+    void setParam (std::atomic<float>* amp, std::atomic<float>* attack, std::atomic<float>* release)
     {
         // dereference the pointers
         masterAmp = *amp;
@@ -34,14 +34,15 @@ public:
         env1.setDecay(200);
         env1.setRelease(double(*release));
     }
-    void setInterpolationFile(float* interpolation)
+    void setInterpolationFile(std::atomic<float>* interpolation)
     {
         osc1.interpolationRead(float(*interpolation), int(iWaveCombination), bool(bInterpolationReversed), bool(bSmooth));
     }
     
     //===========================================
     // For controlling the OSC type
-    void setOscType(float* selection)
+//    void setOscType(float* selection)
+    void setOscType(std::atomic<float>* selection)
     {
         theWave = *selection; //dereferenec the selection
         theMode = 0;
@@ -73,7 +74,7 @@ public:
      ===========================================
     */
     
-    void setNeuralOscType(float* selection, float* selection2)
+    void setNeuralOscType(std::atomic<float>* selection, std::atomic<float>* selection2)
     {
         if(*selection ==0)
         {
@@ -149,7 +150,7 @@ public:
     
     //===========================================
     // For controlling the Filter Cutoff
-    void setFilterCutoff(float* cutoff)
+    void setFilterCutoff(std::atomic<float>* cutoff)
     {
         theCutoff = *cutoff; // dereference the cutoff
     }

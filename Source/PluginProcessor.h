@@ -67,6 +67,8 @@ public:
     int interpolation;
     
     AudioProcessorValueTreeState tree;
+    AudioProcessorValueTreeState::ParameterLayout createParameters();
+
     
     //==============================================================================
     float getVppm();
